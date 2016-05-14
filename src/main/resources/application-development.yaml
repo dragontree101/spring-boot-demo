@@ -1,0 +1,18 @@
+spring:
+  profiles: development
+  application:
+    name: spring-boot-demo
+
+server:
+  port: 8088
+  context-path: /demo
+
+person:
+  dragon:
+    name: dragon
+    age: 999
+    male: false
+  monkey:
+    name: monkey
+    age: 2
+    male: true
