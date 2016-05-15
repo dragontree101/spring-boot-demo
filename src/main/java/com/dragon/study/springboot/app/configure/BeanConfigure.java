@@ -43,4 +43,9 @@ public class BeanConfigure {
     return monkey;
   }
 
+//  @Override
+//  public void setResourceLoader(ResourceLoader resourceLoader) {
+//    System.out.println(resourceLoader);
+//    ((AnnotationConfigEmbeddedWebApplicationContext) resourceLoader).getBean(DragonPersonProperties.class).setName("dragon-copy");
+//  }
 }
