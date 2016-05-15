@@ -8,10 +8,6 @@ server:
   context-path: /demo
 
 person:
-  dragon:
-    name: dragon
-    age: 999
-    male: false
   monkey:
     name: monkey
     age: 2
