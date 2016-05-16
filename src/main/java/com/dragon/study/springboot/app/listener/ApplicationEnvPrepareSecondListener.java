@@ -1,5 +1,6 @@
 package com.dragon.study.springboot.app.listener;
 
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
@@ -14,7 +15,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by dragon on 16/5/15.
  */
-public class ApplicationEnvPrepareListener
+public class ApplicationEnvPrepareSecondListener
     implements ApplicationListener<ApplicationEnvironmentPreparedEvent>, Ordered {
 
   public static String PROPERTY_SOURCE_MAP = "dragon-map";
@@ -53,6 +54,6 @@ public class ApplicationEnvPrepareListener
 
   @Override
   public int getOrder() {
-    return -1000;
+    return 1000;
   }
 }

@@ -2,4 +2,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.dragon.study.springboot.app.configure.BeanConfigure
 
 org.springframework.context.ApplicationListener=\
-com.dragon.study.springboot.app.listener.ApplicationEnvPrepareListener
+com.dragon.study.springboot.app.listener.ApplicationEnvPrepareListener,\
+com.dragon.study.springboot.app.listener.ApplicationEnvPrepareSecondListener
