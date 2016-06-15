@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-boot-admin
+  boot:
+    admin:
+      url: http://localhost:${server.port}
+  jackson:
+    serialization:
+      indent_output: true
+
+server:
+  port: 8090
+
+endpoints:
+  health:
+    sensitive: false

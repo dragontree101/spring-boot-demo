@@ -3,5 +3,4 @@ com.dragon.study.springboot.app1.configure.DragonBeanConfigure,\
 com.dragon.study.springboot.app1.configure.DragonPersonProperties
 
 org.springframework.context.ApplicationListener=\
-com.dragon.study.springboot.app1.listener.ApplicationEnvPrepareListener,\
-com.dragon.study.springboot.app1.listener.ApplicationEnvPrepareSecondListener
+com.dragon.study.springboot.app1.listener.ApplicationEnvPrepareListener

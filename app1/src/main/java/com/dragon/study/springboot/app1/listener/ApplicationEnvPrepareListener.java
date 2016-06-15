@@ -1,5 +1,8 @@
 package com.dragon.study.springboot.app1.listener;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
+
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
@@ -25,6 +28,9 @@ public class ApplicationEnvPrepareListener
     Environment environment = applicationEnvironmentPreparedEvent.getEnvironment();
     MutablePropertySources mutablePropertySources = ((ConfigurableEnvironment) environment)
         .getPropertySources();
+
+    Config config = ConfigFactory.load("dragon.conf");
+    String name = config.getString("dragon.name");
 
     LinkedHashMap<String, Object> properties1 = new LinkedHashMap<>();
     properties1.put("person.dragon.name", "dragon-copy-1");

@@ -12,6 +12,7 @@
     <modules>
         <module>app1</module>
         <module>app2</module>
+        <module>admin</module>
     </modules>
 
     <dependencyManagement>
