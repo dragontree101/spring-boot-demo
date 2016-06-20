@@ -1,0 +1,24 @@
+spring:
+  profiles: test
+  application:
+    name: aaa
+  cloud:
+    config:
+      uri: http://config-centre.test.rhllor.cn/
+      password: J2f(8J!onz
+      label: master
+  boot:
+    admin:
+      url: http://localhost:8080
+#      client:
+#        service-url: http://ricebook.spring-boot-demo.net
+
+
+server:
+  port: 8088
+
+person:
+  monkey:
+    name: monkey
+    age: 2
+    male: true

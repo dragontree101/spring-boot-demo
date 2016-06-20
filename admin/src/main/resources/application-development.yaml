@@ -3,13 +3,35 @@ spring:
     name: spring-boot-admin
   boot:
     admin:
-      url: http://localhost:${server.port}
+      auto-deregistration: true
+      notify:
+        mail:
+          enable: true
+          from: longzhe@ricebook.com
+          to: longzhe@ricebook.com
   jackson:
     serialization:
       indent_output: true
+  cloud:
+    config:
+      enabled: false
+  mail:
+    host: smtp.exmail.qq.com
+    port: 465
+    username: longzhe@ricebook.com
+    password: Longzhe1@3
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
 
-server:
-  port: 8090
 
 endpoints:
   health:
