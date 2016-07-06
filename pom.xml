@@ -53,6 +53,12 @@
                 <artifactId>lombok</artifactId>
                 <version>1.16.6</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>3.1.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

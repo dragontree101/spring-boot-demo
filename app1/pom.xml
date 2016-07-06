@@ -93,5 +93,11 @@
             <artifactId>spring-cloud-config-client</artifactId>
             <version>1.1.0.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>3.1.2</version>
+        </dependency>
     </dependencies>
 </project>
