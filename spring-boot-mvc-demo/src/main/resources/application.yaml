@@ -1,0 +1,6 @@
+spring:
+    profiles:
+      active: test
+#      active: production   # --spring.profiles.active=production
+
+

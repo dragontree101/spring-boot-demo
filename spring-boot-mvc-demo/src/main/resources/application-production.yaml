@@ -1,0 +1,12 @@
+spring:
+  profiles: production
+  application:
+    name: spring-boot-mvc-demo
+
+server:
+  port: 8080
+  context-path: /mvc
+
+logging:
+  level:
+    com.dragon.study.spring.boot: INFO

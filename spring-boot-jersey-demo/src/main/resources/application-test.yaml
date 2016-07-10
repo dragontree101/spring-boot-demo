@@ -1,0 +1,8 @@
+spring:
+  profiles: test
+  application:
+    name: spring-boot-jersey-demo
+
+server:
+  port: 8088
+  context-path: /jersey

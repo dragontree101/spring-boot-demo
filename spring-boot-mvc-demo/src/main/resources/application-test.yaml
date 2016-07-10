@@ -1,0 +1,13 @@
+spring:
+  profiles: test
+  application:
+    name: spring-boot-mvc-demo
+
+server:
+  port: 8088
+  context-path: /mvc
+
+logging:
+  level:
+    com.dragon.study.spring.boot: DEBUG
+    org.springframework.web: DEBUG
