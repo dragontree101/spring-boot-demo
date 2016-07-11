@@ -47,7 +47,7 @@ public class ClassroomServiceImpl implements IClassroomService {
     classroom.setClassroomNumber(classroomNumber);
     classroom.setTeacher(UUID.randomUUID().toString());
 
-    List<PersonModel> personModelList = IntStream.range(1, 40).boxed().map(this::createPersonModel)
+    List<PersonModel> personModelList = IntStream.rangeClosed(1, 40).boxed().map(this::createPersonModel)
         .collect(Collectors.toList());
     classroom.setPersonModels(personModelList);
     return classroom;

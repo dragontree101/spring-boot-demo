@@ -6,7 +6,9 @@ import com.dragon.study.spring.boot.mvc.service.IClassroomService;
 import com.dragon.study.spring.boot.mvc.service.impl.ClassroomServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +27,7 @@ public class ClassroomController {
   @Autowired
   IClassroomService classroomService;
 
-  @RequestMapping("/teacherName")
+  @RequestMapping(value = "/teacherName", method = RequestMethod.GET)
   public String teacherName(
       @RequestParam(name = "grade")
       int grade,
@@ -34,16 +36,16 @@ public class ClassroomController {
     return classroomService.getTeacherName(grade, classroom);
   }
 
-  @RequestMapping("/classroom")
+  @RequestMapping(value = "/classroom/{grade}/{classroom}", method = RequestMethod.GET)
   public ClassroomModel classroom(
-      @RequestParam(name = "grade")
+      @PathVariable
       int grade,
-      @RequestParam(name = "classroom")
+      @PathVariable
       int classroom) {
     return classroomService.getClassroom(grade, classroom);
   }
 
-  @RequestMapping("/topTen")
+  @RequestMapping(value = "/topTen", method = RequestMethod.GET)
   public List<PersonModel> topTen(
       @RequestParam(name = "grade")
       int grade,
@@ -52,7 +54,7 @@ public class ClassroomController {
     return classroomService.getTopTenStudent(grade, classroom);
   }
 
-  @RequestMapping("/biggerThan60")
+  @RequestMapping(value = "/biggerThan60", method = RequestMethod.GET)
   public List<PersonModel> biggerThan60(
       @RequestParam(name = "grade")
       int grade,
