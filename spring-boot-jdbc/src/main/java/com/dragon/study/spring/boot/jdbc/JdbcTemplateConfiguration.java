@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -32,5 +33,10 @@ public class JdbcTemplateConfiguration {
   @Bean
   public JdbcTemplateFactory jdbcTemplateFactory(DataSource dataSource) {
     return new JdbcTemplateFactory(dataSource);
+  }
+
+  @Bean
+  public NamedParameterJdbcTemplate namedParameterJdbcTemplate(JdbcTemplateFactory jdbcTemplateFactory) {
+    return new NamedParameterJdbcTemplate(jdbcTemplateFactory.getJdbcTemplate());
   }
 }

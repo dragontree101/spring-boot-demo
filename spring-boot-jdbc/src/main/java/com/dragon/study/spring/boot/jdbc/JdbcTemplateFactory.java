@@ -5,9 +5,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
+import lombok.Getter;
+
 /**
  * Created by dragon on 16/7/11.
  */
+@Getter
 public class JdbcTemplateFactory {
 
   private JdbcTemplate jdbcTemplate;
