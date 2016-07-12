@@ -18,10 +18,9 @@ public class CommonResponse {
     return apiCommonResponse;
   }
 
-  public Result result;
+  private Result result;
 
-  @Getter
-  @Setter
+  @Data
   public static class Result {
 
     @JSONField(name = "is_success")
@@ -32,9 +31,6 @@ public class CommonResponse {
       result.setSuccess(isSuccess);
       return result;
     }
-
-
-
   }
 
 }

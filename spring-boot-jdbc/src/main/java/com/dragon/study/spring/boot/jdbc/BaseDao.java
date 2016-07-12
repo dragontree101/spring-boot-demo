@@ -23,7 +23,6 @@ public abstract class BaseDao {
     return namedParameterJdbcTemplate;
   }
 
-
   protected <T> Optional<T> queryForObject(JdbcTemplate jdbcTemplate, String sql,
       RowMapper<T> rowMapper, Object... args) {
     try {

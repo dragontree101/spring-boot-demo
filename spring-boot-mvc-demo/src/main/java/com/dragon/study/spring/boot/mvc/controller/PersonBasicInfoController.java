@@ -3,6 +3,7 @@ package com.dragon.study.spring.boot.mvc.controller;
 import com.google.common.base.Strings;
 
 import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
+import com.dragon.study.spring.boot.mvc.exception.PersonBasicInfoException;
 import com.dragon.study.spring.boot.mvc.model.CommonResponse;
 import com.dragon.study.spring.boot.mvc.service.IPersonBasicInfoService;
 
@@ -34,7 +35,7 @@ public class PersonBasicInfoController {
       PersonBasicInfo personBasicInfo) {
     if(Strings.isNullOrEmpty(personBasicInfo.getPhone()) || Strings.isNullOrEmpty(personBasicInfo.getPassword())) {
       log.error("phone or password is empty or null");
-      return CommonResponse.of(false);
+      throw new PersonBasicInfoException(PersonBasicInfoException.Exception.NO_PHONE_FAILURE);
     }
 
     try {

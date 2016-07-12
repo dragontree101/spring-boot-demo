@@ -16,4 +16,3 @@ mysql:
 logging:
   level:
     com.dragon.study.spring.boot: DEBUG
-    org.springframework.web: DEBUG

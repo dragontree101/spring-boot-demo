@@ -15,7 +15,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 @Import(JdbcTemplateConfiguration.class)
 public class JdbcBeanConfig {
 
-
   @Bean
   public PersonBasicInfoDao mysqlPassInviteCodeStorage(
       NamedParameterJdbcTemplate namedParameterJdbcTemplate) {

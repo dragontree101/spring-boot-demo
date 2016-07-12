@@ -6,6 +6,8 @@ import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
+
 /**
  * Created by dragon on 16/7/12.
  */
@@ -21,5 +23,12 @@ public class PersonBasicInfoDao extends BaseDao {
 
     int result = getNamedParameterJdbcTemplate().update(SAVE_ONE_PERSON_SQL, beanParamSource);
     return result > 0;
+  }
+
+  public void truncatePersonBasicInfoTable() {
+    String truncateTableSql = "truncate table person_basic_info";
+
+    getNamedParameterJdbcTemplate().update(truncateTableSql, Collections.emptyMap());
+    return ;
   }
 }
