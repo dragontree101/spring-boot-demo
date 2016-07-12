@@ -29,9 +29,14 @@ public class JdbcDataSourceConfiguration {
 
   @Bean
   public DataSource dataSource() {
-    String masterUrl = mysqlProperties.getUrl();
-    log.info("base master url " + masterUrl.substring(0, masterUrl.indexOf("?")));
+    String url = mysqlProperties.getUrl();
+    log.info("base url " + url.substring(0, url.indexOf("?")));
     DruidDataSource dataSource = new DruidDataSource();
+
+    dataSource.setUrl(url);
+    dataSource.setUsername(mysqlProperties.getUserName());
+    dataSource.setPassword(mysqlProperties.getPassword());
+
     dataSource.setInitialSize(jdbcPoolConfig.getInitialSize());
     dataSource.setMinIdle(jdbcPoolConfig.getMinIdle());
     dataSource.setMaxActive(jdbcPoolConfig.getMaxActive());

@@ -2,7 +2,6 @@ package com.dragon.study.spring.boot.mvc.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,15 +18,23 @@ public class CommonResponse {
     return apiCommonResponse;
   }
 
-  private Result result;
+  public Result result;
 
   @Getter
   @Setter
-  @AllArgsConstructor(staticName = "of")
   public static class Result {
 
     @JSONField(name = "is_success")
     private boolean isSuccess = false;
+
+    public static Result of(boolean isSuccess) {
+      Result result = new Result();
+      result.setSuccess(isSuccess);
+      return result;
+    }
+
+
+
   }
 
 }

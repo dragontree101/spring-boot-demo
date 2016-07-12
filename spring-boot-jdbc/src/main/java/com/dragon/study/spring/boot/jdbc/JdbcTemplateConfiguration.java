@@ -1,6 +1,5 @@
 package com.dragon.study.spring.boot.jdbc;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

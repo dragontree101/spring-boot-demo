@@ -11,8 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-boot-jdbc</artifactId>
 
-
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

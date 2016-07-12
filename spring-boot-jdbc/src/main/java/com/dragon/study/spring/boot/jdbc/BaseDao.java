@@ -10,20 +10,19 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.Resource;
-
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Setter
 public abstract class BaseDao {
 
-
-  @Resource
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
     return namedParameterJdbcTemplate;
   }
+
 
   protected <T> Optional<T> queryForObject(JdbcTemplate jdbcTemplate, String sql,
       RowMapper<T> rowMapper, Object... args) {

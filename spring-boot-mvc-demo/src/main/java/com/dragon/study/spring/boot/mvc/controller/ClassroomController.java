@@ -3,7 +3,6 @@ package com.dragon.study.spring.boot.mvc.controller;
 import com.dragon.study.spring.boot.mvc.model.ClassroomModel;
 import com.dragon.study.spring.boot.mvc.model.PersonModel;
 import com.dragon.study.spring.boot.mvc.service.IClassroomService;
-import com.dragon.study.spring.boot.mvc.service.impl.ClassroomServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +28,9 @@ public class ClassroomController {
 
   @RequestMapping(value = "/teacherName", method = RequestMethod.GET)
   public String teacherName(
-      @RequestParam(name = "grade")
+      @RequestParam(name = "grade", required = true)
       int grade,
-      @RequestParam(name = "classroom")
+      @RequestParam(name = "classroom", required = true)
       int classroom) {
     return classroomService.getTeacherName(grade, classroom);
   }
@@ -47,18 +46,18 @@ public class ClassroomController {
 
   @RequestMapping(value = "/topTen", method = RequestMethod.GET)
   public List<PersonModel> topTen(
-      @RequestParam(name = "grade")
+      @RequestParam(name = "grade", required = true)
       int grade,
-      @RequestParam(name = "classroom")
+      @RequestParam(name = "classroom", required = true)
       int classroom) {
     return classroomService.getTopTenStudent(grade, classroom);
   }
 
   @RequestMapping(value = "/biggerThan60", method = RequestMethod.GET)
   public List<PersonModel> biggerThan60(
-      @RequestParam(name = "grade")
+      @RequestParam(name = "grade", required = true)
       int grade,
-      @RequestParam(name = "classroom")
+      @RequestParam(name = "classroom", required = true)
       int classroom) {
     return classroomService.getBiggerThan60(grade, classroom);
   }

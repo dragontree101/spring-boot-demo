@@ -1,15 +1,14 @@
 package com.dragon.study.spring.boot.mvc.service.impl;
 
-import com.google.common.base.Strings;
-
-import com.dragon.study.spring.boot.jdbc.dao.PersonBasicInfoDaoImpl;
+import com.dragon.study.spring.boot.jdbc.dao.PersonBasicInfoDao;
 import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
 import com.dragon.study.spring.boot.mvc.service.IPersonBasicInfoService;
 import com.dragon.study.spring.boot.mvc.utils.EncryptUtils;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,18 +19,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
 
-  @Resource
-  private PersonBasicInfoDaoImpl personBasicInfoDao;
+  @Autowired
+  private PersonBasicInfoDao personBasicInfoDao;
 
   @Override
-  public boolean registerPerson(String phone, String email, String password) {
-    PersonBasicInfo personBasicInfo = new PersonBasicInfo();
-    personBasicInfo.setPhone(phone);
-    if(!Strings.isNullOrEmpty(email)) {
-      personBasicInfo.setEmail(email);
-    }
-
+  public boolean registerPerson(PersonBasicInfo personBasicInfo) {
+    String password = personBasicInfo.getPassword();
     personBasicInfo.setPassword(EncryptUtils.encryptMD5(password));
+    personBasicInfo.setCreateDate(LocalDateTime.now());
+    personBasicInfo.setUpdateDate(LocalDateTime.now());
 
     return personBasicInfoDao.savePersonBasicInfo(personBasicInfo);
   }

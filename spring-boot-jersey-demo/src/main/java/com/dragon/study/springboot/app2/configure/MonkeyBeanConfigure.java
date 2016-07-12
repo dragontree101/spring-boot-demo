@@ -4,7 +4,6 @@ package com.dragon.study.springboot.app2.configure;
 import com.dragon.study.springboot.app2.bean.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @ConfigurationProperties(prefix = "mysql")
 public class MysqlProperties {
-  String userName;
-  String password;
-  String url;
+  private String userName;
+  private String password = "";
+  private String url;
 }
