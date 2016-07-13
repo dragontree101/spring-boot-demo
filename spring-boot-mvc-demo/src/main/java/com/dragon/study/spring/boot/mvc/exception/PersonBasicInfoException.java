@@ -10,7 +10,9 @@ import com.dragon.study.spring.boot.mvc.exception.common.MvcExceptionModel;
 public class PersonBasicInfoException extends MvcException {
 
   public enum Exception implements MvcExceptionFactor {
-    NO_PHONE_FAILURE(10001, "没有输入电话号码"),;
+    NO_PHONE_FAILURE(10001, "没有输入电话号码"),
+    NO_PERSON_FAILURE(20001, "查找的用户不存在"),
+    ;
 
     private int index;
     private String reason;

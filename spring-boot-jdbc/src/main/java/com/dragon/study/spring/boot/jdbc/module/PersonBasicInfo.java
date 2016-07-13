@@ -1,6 +1,7 @@
 package com.dragon.study.spring.boot.jdbc.module;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -13,6 +14,6 @@ public class PersonBasicInfo {
   private String phone;
   private String email = "";
   private String password;
-  private LocalDateTime createDate;
-  private LocalDateTime updateDate;
+  private Date createDate;
+  private Date updateDate;
 }

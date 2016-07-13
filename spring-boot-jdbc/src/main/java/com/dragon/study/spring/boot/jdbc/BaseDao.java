@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import lombok.Setter;
@@ -23,29 +24,29 @@ public abstract class BaseDao {
     return namedParameterJdbcTemplate;
   }
 
-  protected <T> Optional<T> queryForObject(JdbcTemplate jdbcTemplate, String sql,
-      RowMapper<T> rowMapper, Object... args) {
+  protected <T> Optional<T> queryForObject(String sql,
+      RowMapper<T> rowMapper, Map<String, ?> paramMap) {
     try {
-      T result = jdbcTemplate.queryForObject(sql, rowMapper, args);
+      T result = getNamedParameterJdbcTemplate().queryForObject(sql, paramMap, rowMapper);
       if (result != null) {
         return Optional.ofNullable(result);
       }
     } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
       log.debug("class:{} ,queryForObject sql: {} ,params:{} ,rowmapper:{} , no_result",
-          this.getClass().getSimpleName(), sql, JSON.toJSONString(args),
+          this.getClass().getSimpleName(), sql, JSON.toJSONString(paramMap),
           rowMapper.getClass().getSimpleName());
     }
     return Optional.empty();
   }
 
-  protected <T> Optional<List<T>> queryForList(JdbcTemplate jdbcTemplate, String sql,
-      RowMapper<T> rowMapper, Object... args) {
+  protected <T> Optional<List<T>> queryForList(String sql,
+      RowMapper<T> rowMapper, Map<String, ?> paramMap) {
     try {
-      List<T> result = jdbcTemplate.query(sql, rowMapper, args);
+      List<T> result = getNamedParameterJdbcTemplate().query(sql, paramMap, rowMapper);
       return Optional.ofNullable(result);
     } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
       log.debug("class:{} ,queryForList sql: {} ,params:{} ,rowmapper:{}, no_result",
-          this.getClass().getSimpleName(), sql, JSON.toJSONString(args),
+          this.getClass().getSimpleName(), sql, JSON.toJSONString(paramMap),
           rowMapper.getClass().getSimpleName());
     }
     return Optional.empty();

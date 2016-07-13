@@ -1,13 +1,14 @@
 package com.dragon.study.spring.boot.mvc.test;
 
 import com.dragon.study.spring.boot.jdbc.dao.PersonBasicInfoDao;
+import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
 import com.dragon.study.spring.boot.mvc.Application;
 import com.dragon.study.spring.boot.mvc.exception.common.MvcExceptionModel;
 import com.dragon.study.spring.boot.mvc.model.CommonResponse;
+import com.dragon.study.spring.boot.mvc.utils.EncryptUtils;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,8 @@ public class PersonBasicInfoTest {
 
     boolean isSuccess = response.getBody().getResult().isSuccess();
     Assert.assertEquals(isSuccess, true);
+
+    testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
   }
 
   @Test
@@ -86,5 +89,60 @@ public class PersonBasicInfoTest {
     Assert.assertEquals(body.getDetailMsg(), "没有输入电话号码");
     Assert.assertEquals(body.getErrorMsg(), "没有输入电话号码");
     Assert.assertNull(body.getRequestUri());
+  }
+
+  @Test
+  public void testNoQueryPerson() throws Exception {
+    ResponseEntity<MvcExceptionModel> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/queryPerson/18507313226", MvcExceptionModel.class);
+    HttpStatus status = responseEntity.getStatusCode();
+    Assert.assertEquals(status.value(), 404);
+
+    MvcExceptionModel body = responseEntity.getBody();
+    Assert.assertEquals(body.getErrorCode(), 20001);
+    Assert.assertEquals(body.getHttpCode(), 404);
+    Assert.assertEquals(body.getDetailMsg(), "查找的用户不存在");
+    Assert.assertEquals(body.getErrorMsg(), "查找的用户不存在");
+    Assert.assertNull(body.getRequestUri());
+  }
+
+  private void testQueryPerson(String phone, String email, String password, boolean hasSleep) throws Exception {
+    ResponseEntity<PersonBasicInfo> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/queryPerson/" + phone, PersonBasicInfo.class);
+    HttpStatus status = responseEntity.getStatusCode();
+    Assert.assertTrue(status.is2xxSuccessful());
+
+    PersonBasicInfo body = responseEntity.getBody();
+
+    Assert.assertEquals(body.getPhone(), phone);
+    Assert.assertEquals(body.getEmail(), email);
+    Assert.assertEquals(body.getPassword(), EncryptUtils.encryptMD5(password));
+    if(hasSleep) {
+      Assert.assertEquals(body.getUpdateDate().getTime() - body.getCreateDate().getTime() > 8000, true);
+    }
+  }
+
+  @Test
+  public void testUpdatePersonBasicInfo() throws Exception {
+    testRegister();
+
+    Thread.sleep(10000);
+
+    MultiValueMap<String, String> bodyMap = new LinkedMultiValueMap<>();
+    bodyMap.add("phone", "18507313226");
+    bodyMap.add("email", "dragontree101@souhu.com");
+    bodyMap.add("password", "longlong1");
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
+    HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
+    ResponseEntity<CommonResponse> response = template.exchange("http://127.0.0.1:8088/mvc/spring-boot/updateInfo", HttpMethod.POST, httpEntity, CommonResponse.class);
+
+    HttpStatus status = response.getStatusCode();
+    Assert.assertTrue(status.is2xxSuccessful());
+
+    boolean isSuccess = response.getBody().getResult().isSuccess();
+    Assert.assertEquals(isSuccess, true);
+
+    testQueryPerson("18507313226", "dragontree101@souhu.com", "longlong1", true);
   }
 }
