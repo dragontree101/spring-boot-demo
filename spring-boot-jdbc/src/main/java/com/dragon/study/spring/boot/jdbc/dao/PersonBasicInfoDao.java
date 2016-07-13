@@ -21,7 +21,7 @@ public class PersonBasicInfoDao extends BaseDao {
 
   private static final String SAVE_ONE_PERSON_SQL = "INSERT INTO person_basic_info (phone, email, password, create_date, update_date) " + " VALUES (:phone, :email, :password, :createDate, :updateDate)";
 
-  private static final String QUERY_ONE_PSERON_SQL = "SELECT * FROM person_basic_info WHERE phone = :phone";
+  private static final String QUERY_ONE_PERSON_SQL = "SELECT * FROM person_basic_info WHERE phone = :phone";
 
   private static final String UPDATE_PERSON_SQL = "UPDATE person_basic_info set phone = :phone, email = :email, password = :password, update_date = :updateDate " + " WHERE phone = :phone";
 
@@ -36,7 +36,7 @@ public class PersonBasicInfoDao extends BaseDao {
   public PersonBasicInfo getPersonBasicInfo(String phone) {
     Map<String, Object> params = Maps.newHashMap();
     params.put("phone", phone);
-    Optional<PersonBasicInfo> personBasicInfo = queryForObject(QUERY_ONE_PSERON_SQL,
+    Optional<PersonBasicInfo> personBasicInfo = queryForObject(QUERY_ONE_PERSON_SQL,
         BeanPropertyRowMapper.newInstance(PersonBasicInfo.class), params);
     return personBasicInfo.orElse(null);
   }
