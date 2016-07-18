@@ -7,6 +7,8 @@ import com.dragon.study.spring.boot.mvc.service.IPersonBasicInfoService;
 import com.dragon.study.spring.boot.mvc.utils.EncryptUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -24,6 +26,7 @@ public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
   private PersonBasicInfoDao personBasicInfoDao;
 
   @Override
+  @CacheEvict(value = "personInfo", key = "#personBasicInfo.getPhone()")
   public boolean registerPerson(PersonBasicInfo personBasicInfo) {
     String password = personBasicInfo.getPassword();
     personBasicInfo.setPassword(EncryptUtils.encryptMD5(password));
@@ -34,6 +37,7 @@ public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
   }
 
   @Override
+  @Cacheable(value = "personInfo", keyGenerator = "phoneKeyGenerator")
   public PersonBasicInfo queryPersonBasicInfo(String phone) {
     PersonBasicInfo personBasicInfo = personBasicInfoDao.getPersonBasicInfo(phone);
     if(personBasicInfo == null) {
@@ -45,6 +49,7 @@ public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
 
 
   @Override
+  @CacheEvict(value = "personInfo", key = "#personBasicInfo.getPhone()")
   public boolean updatePersonInfo(PersonBasicInfo personBasicInfo) {
     String password = personBasicInfo.getPassword();
     personBasicInfo.setPassword(EncryptUtils.encryptMD5(password));

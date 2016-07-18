@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -41,9 +42,13 @@ public class PersonBasicInfoTest {
   @Autowired
   private PersonBasicInfoDao personBasicInfoDao;
 
+  @Autowired
+  private RedisTemplate redisTemplate;
+
   @Before
   public void clearTable() throws Exception {
     personBasicInfoDao.truncatePersonBasicInfoTable();
+    redisTemplate.getConnectionFactory().getConnection().flushDb();
   }
 
   @Test
@@ -65,6 +70,9 @@ public class PersonBasicInfoTest {
     boolean isSuccess = response.getBody().getResult().isSuccess();
     Assert.assertEquals(isSuccess, true);
 
+    testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
+
+    //test cache
     testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
   }
 
@@ -93,7 +101,7 @@ public class PersonBasicInfoTest {
 
   @Test
   public void testNoQueryPerson() throws Exception {
-    ResponseEntity<MvcExceptionModel> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/queryPerson/18507313226", MvcExceptionModel.class);
+    ResponseEntity<MvcExceptionModel> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/queryPerson/18507313227", MvcExceptionModel.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertEquals(status.value(), 404);
 
