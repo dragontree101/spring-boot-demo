@@ -1,23 +1,15 @@
 package com.dragon.study.spring.boot.mvc.exception.resolver;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.dragon.study.spring.boot.mvc.exception.common.MvcException;
 import com.dragon.study.spring.boot.mvc.exception.common.MvcExceptionModel;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
-import org.springframework.web.servlet.view.json.AbstractJackson2View;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

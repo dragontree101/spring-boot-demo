@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 
 import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
 import com.dragon.study.spring.boot.mvc.exception.PersonBasicInfoException;
-import com.dragon.study.spring.boot.mvc.exception.common.MvcException;
 import com.dragon.study.spring.boot.mvc.model.CommonResponse;
 import com.dragon.study.spring.boot.mvc.service.IPersonBasicInfoService;
 

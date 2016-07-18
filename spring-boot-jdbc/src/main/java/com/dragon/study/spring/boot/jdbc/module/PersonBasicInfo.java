@@ -1,6 +1,5 @@
 package com.dragon.study.spring.boot.jdbc.module;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.Data;

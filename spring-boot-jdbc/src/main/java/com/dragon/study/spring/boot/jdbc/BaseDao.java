@@ -3,7 +3,6 @@ package com.dragon.study.spring.boot.jdbc;
 import com.alibaba.fastjson.JSON;
 
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
