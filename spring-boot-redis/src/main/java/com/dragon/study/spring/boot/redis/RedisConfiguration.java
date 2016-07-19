@@ -3,7 +3,6 @@ package com.dragon.study.spring.boot.redis;
 import com.dragon.study.spring.boot.redis.conf.RedisPoolProperties;
 import com.dragon.study.spring.boot.redis.conf.RedisProperties;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
