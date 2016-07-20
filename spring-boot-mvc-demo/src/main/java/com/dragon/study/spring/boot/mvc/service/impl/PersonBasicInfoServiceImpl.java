@@ -62,7 +62,7 @@ public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
   public PersonBasicInfo queryPersonBasicInfo(String phone) {
     PersonBasicInfo personBasicInfo = personBasicInfoDao.getPersonBasicInfo(phone);
     if(personBasicInfo == null) {
-      throw new PersonBasicInfoException(PersonBasicInfoException.Exception.NO_PERSON_FAILURE);
+      throw new PersonBasicInfoException(PersonBasicInfoException.BasicInfoExceptionFactor.NO_PERSON_FAILURE);
     }
 
     return personBasicInfo;

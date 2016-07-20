@@ -9,7 +9,7 @@ import com.dragon.study.spring.boot.mvc.exception.common.MvcExceptionModel;
  */
 public class PersonBasicInfoException extends MvcException {
 
-  public enum Exception implements MvcExceptionFactor {
+  public enum BasicInfoExceptionFactor implements MvcExceptionFactor {
     NO_PHONE_FAILURE(10001, "没有输入电话号码"),
     NO_PERSON_FAILURE(20001, "查找的用户不存在"),
     ;
@@ -18,7 +18,7 @@ public class PersonBasicInfoException extends MvcException {
     private String reason;
     private String detailMsg;
 
-    Exception(int index, String reason) {
+    BasicInfoExceptionFactor(int index, String reason) {
       this.index = index;
       this.reason = reason;
       this.detailMsg = reason;
@@ -34,7 +34,7 @@ public class PersonBasicInfoException extends MvcException {
     }
   }
 
-  public PersonBasicInfoException(Exception error) {
+  public PersonBasicInfoException(BasicInfoExceptionFactor error) {
     super(error);
   }
 }

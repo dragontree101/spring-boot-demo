@@ -119,10 +119,17 @@ public class PersonBasicInfoTest {
     headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
     headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
     HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
-    ResponseEntity<CommonResponse> response = template.exchange("http://127.0.0.1:8088/mvc/spring-boot/register", HttpMethod.POST, httpEntity, CommonResponse.class);
+    ResponseEntity<MvcExceptionModel> response = template.exchange("http://127.0.0.1:8088/mvc/spring-boot/register", HttpMethod.POST, httpEntity, MvcExceptionModel.class);
 
     HttpStatus status = response.getStatusCode();
-    Assert.assertTrue(status.is5xxServerError());
+    Assert.assertEquals(status.value(), 500);
+
+    MvcExceptionModel body = response.getBody();
+    Assert.assertEquals(body.getErrorCode(), 5000001);
+    Assert.assertEquals(body.getHttpCode(), 500);
+    Assert.assertEquals(body.getErrorMsg(), "Service internal error!");
+    Assert.assertEquals(body.getDetailMsg(), "");
+    Assert.assertNull(body.getRequestUri());
 
     testNoQueryPerson();
   }

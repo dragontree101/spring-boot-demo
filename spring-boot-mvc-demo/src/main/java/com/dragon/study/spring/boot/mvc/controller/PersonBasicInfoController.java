@@ -40,7 +40,7 @@ public class PersonBasicInfoController {
     if (Strings.isNullOrEmpty(personBasicInfo.getPhone()) || Strings
         .isNullOrEmpty(personBasicInfo.getPassword())) {
       log.error("phone or password is empty or null");
-      throw new PersonBasicInfoException(PersonBasicInfoException.Exception.NO_PHONE_FAILURE);
+      throw new PersonBasicInfoException(PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
     }
 
     personBasicInfoService.registerPerson(personBasicInfo, country);
@@ -54,7 +54,7 @@ public class PersonBasicInfoController {
       String phone) {
     if (Strings.isNullOrEmpty(phone)) {
       log.error("phone is empty or null");
-      throw new PersonBasicInfoException(PersonBasicInfoException.Exception.NO_PHONE_FAILURE);
+      throw new PersonBasicInfoException(PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
     }
 
     return personBasicInfoService.queryPersonBasicInfo(phone);
@@ -68,7 +68,7 @@ public class PersonBasicInfoController {
     if (Strings.isNullOrEmpty(personBasicInfo.getPhone()) || Strings
         .isNullOrEmpty(personBasicInfo.getPassword())) {
       log.error("phone or password is empty or null");
-      throw new PersonBasicInfoException(PersonBasicInfoException.Exception.NO_PHONE_FAILURE);
+      throw new PersonBasicInfoException(PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
     }
 
     try {
