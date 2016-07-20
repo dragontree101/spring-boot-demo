@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,20 +34,17 @@ public class PersonBasicInfoController {
   @ResponseBody
   public CommonResponse registerPerson(
       @ModelAttribute
-      PersonBasicInfo personBasicInfo) {
+      PersonBasicInfo personBasicInfo,
+      @RequestParam(value = "country", required = false)
+      String country) {
     if (Strings.isNullOrEmpty(personBasicInfo.getPhone()) || Strings
         .isNullOrEmpty(personBasicInfo.getPassword())) {
       log.error("phone or password is empty or null");
       throw new PersonBasicInfoException(PersonBasicInfoException.Exception.NO_PHONE_FAILURE);
     }
 
-    try {
-      personBasicInfoService.registerPerson(personBasicInfo);
-      return CommonResponse.of(true);
-    } catch (Exception e) {
-      log.error(e.getMessage(), e);
-      return CommonResponse.of(false);
-    }
+    personBasicInfoService.registerPerson(personBasicInfo, country);
+    return CommonResponse.of(true);
   }
 
   @RequestMapping(value = "/queryPerson/{phone}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

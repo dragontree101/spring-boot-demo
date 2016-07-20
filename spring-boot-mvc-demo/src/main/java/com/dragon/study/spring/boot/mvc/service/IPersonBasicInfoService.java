@@ -7,9 +7,11 @@ import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
  */
 public interface IPersonBasicInfoService {
 
-  boolean registerPerson(PersonBasicInfo personBasicInfo);
+  boolean registerPerson(PersonBasicInfo personBasicInfo, String country);
 
   PersonBasicInfo queryPersonBasicInfo(String phone);
 
   boolean updatePersonInfo(PersonBasicInfo personBasicInfo);
+
+
 }

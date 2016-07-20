@@ -1,5 +1,6 @@
 package com.dragon.study.spring.boot.mvc.test;
 
+import com.dragon.study.spring.boot.jdbc.dao.PersonAddressDetailInfoDao;
 import com.dragon.study.spring.boot.jdbc.dao.PersonBasicInfoDao;
 import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
 import com.dragon.study.spring.boot.mvc.Application;
@@ -43,11 +44,15 @@ public class PersonBasicInfoTest {
   private PersonBasicInfoDao personBasicInfoDao;
 
   @Autowired
+  private PersonAddressDetailInfoDao personAddressDetailInfoDao;
+
+  @Autowired
   private RedisTemplate redisTemplate;
 
   @Before
   public void clearTable() throws Exception {
     personBasicInfoDao.truncatePersonBasicInfoTable();
+    personAddressDetailInfoDao.truncatePersonAddressDetailInfoTable();
     redisTemplate.getConnectionFactory().getConnection().flushDb();
   }
 
@@ -74,6 +79,52 @@ public class PersonBasicInfoTest {
 
     //test cache
     testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
+  }
+
+  @Test
+  public void testRegisterWithCountry() throws Exception {
+    MultiValueMap<String, String> bodyMap = new LinkedMultiValueMap<>();
+    bodyMap.add("phone", "18507313226");
+    bodyMap.add("email", "dragonlong1986@126.com");
+    bodyMap.add("password", "longlong0");
+    bodyMap.add("country", "中华人民共和国");
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
+    HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
+    ResponseEntity<CommonResponse> response = template.exchange("http://127.0.0.1:8088/mvc/spring-boot/register", HttpMethod.POST, httpEntity, CommonResponse.class);
+
+    HttpStatus status = response.getStatusCode();
+    Assert.assertTrue(status.is2xxSuccessful());
+
+    boolean isSuccess = response.getBody().getResult().isSuccess();
+    Assert.assertEquals(isSuccess, true);
+
+    testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
+
+    //test cache
+    testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
+  }
+
+  @Test
+  public void testRegisterWithErrorCountry() throws Exception {
+    MultiValueMap<String, String> bodyMap = new LinkedMultiValueMap<>();
+    bodyMap.add("phone", "18507313226");
+    bodyMap.add("email", "dragonlong1986@126.com");
+    bodyMap.add("password", "longlong0");
+    bodyMap.add("country", "中华人民共和国中华人民共和国中华人民共和国中华人民共和国中华人民共和国");
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
+    HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
+    ResponseEntity<CommonResponse> response = template.exchange("http://127.0.0.1:8088/mvc/spring-boot/register", HttpMethod.POST, httpEntity, CommonResponse.class);
+
+    HttpStatus status = response.getStatusCode();
+    Assert.assertTrue(status.is5xxServerError());
+
+    testNoQueryPerson();
   }
 
   @Test
