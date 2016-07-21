@@ -1,5 +1,9 @@
 package com.dragon.study.spring.boot.jersey;
 
+import com.dragon.study.spring.boot.jersey.annotation.EnableJersey;
+
+import org.glassfish.jersey.server.filter.CsrfProtectionFilter;
+import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +15,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
+@EnableJersey(
+    scanPackage = "com.dragon.study.spring.boot.jersey",
+    applicationPath = "jersey",
+    componentClasses = {
+        RequestContextFilter.class,
+        CsrfProtectionFilter.class
+    }
+)
 public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
