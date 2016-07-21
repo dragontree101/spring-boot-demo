@@ -2,29 +2,22 @@ package com.dragon.study.spring.boot.jersey.config;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
-import org.glassfish.jersey.server.filter.CsrfProtectionFilter;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 import jersey.repackaged.com.google.common.collect.Maps;
-import lombok.Getter;
 
 /**
  * Created by dragon on 16/7/21.
  */
-@Component
-@Getter
 public class JerseyConfig extends ResourceConfig {
 
-  private final String path;
+  private static JerseyConfigurationParam configurationParam;
 
-  public JerseyConfig(final String path, final String scanPackage, final Class[] componentClasses) {
-    this.path = path;
+  public JerseyConfig() {
+    packages(configurationParam.getScanPackage());
 
-    packages(scanPackage);
-
-    for (Class clazz : componentClasses) {
+    for (Class clazz : configurationParam.getComponentClasses()) {
       if (clazz != null) {
         register(clazz);
       }
@@ -33,5 +26,13 @@ public class JerseyConfig extends ResourceConfig {
     Map<String, Object> properties = Maps.newHashMap();
     properties.put(ServerProperties.WADL_FEATURE_DISABLE, true);
     addProperties(properties);
+  }
+
+  public static JerseyConfigurationParam getConfigurationParam() {
+    return configurationParam;
+  }
+
+  public static void setConfigurationParam(JerseyConfigurationParam configurationParam) {
+    JerseyConfig.configurationParam = configurationParam;
   }
 }

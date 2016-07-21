@@ -5,4 +5,3 @@ spring:
 
 server:
   port: 8088
-  context-path: /jersey
