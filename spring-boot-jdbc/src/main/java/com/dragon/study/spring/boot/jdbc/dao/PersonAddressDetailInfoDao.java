@@ -2,7 +2,6 @@ package com.dragon.study.spring.boot.jdbc.dao;
 
 import com.dragon.study.spring.boot.jdbc.BaseDao;
 import com.dragon.study.spring.boot.jdbc.module.PersonAddressDetailInfo;
-import com.dragon.study.spring.boot.jdbc.module.PersonBasicInfo;
 
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.stereotype.Repository;
