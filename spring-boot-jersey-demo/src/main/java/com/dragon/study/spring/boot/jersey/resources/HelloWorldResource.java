@@ -4,10 +4,12 @@ import com.dragon.study.spring.boot.jersey.service.IHelloJerseyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -28,6 +30,7 @@ public class HelloWorldResource {
 
   @Path("/hello-jersey")
   @GET
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
   public String helloJersey(@QueryParam("name") String name) {
     String info = "info";
@@ -40,8 +43,20 @@ public class HelloWorldResource {
     return "Hello World";
   }
 
+  @Path("/hello-jersey/{path}")
+  @GET
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+  @Produces(MediaType.APPLICATION_JSON)
+  public String helloJerseyPath(@PathParam("path") String path) {
+    log.info("hello jersey controller, path is {}, log level is {}", path);
+
+    helloWorldService.helloJersey();
+    return "Hello World";
+  }
+
   @Path("/hello-jersey")
   @POST
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
   public String helloJerseyPost(@FormParam("name") String name) {
     String info = "info";
