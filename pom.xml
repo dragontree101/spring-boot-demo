@@ -12,7 +12,7 @@
     <properties>
         <skipTests>true</skipTests>
     </properties>
-    
+
     <modules>
         <module>spring-boot-mvc-demo</module>
         <module>spring-boot-no-mvc-demo</module>
