@@ -9,10 +9,15 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <skipTests>true</skipTests>
+    </properties>
+    
     <modules>
         <module>spring-boot-mvc-demo</module>
         <module>spring-boot-no-mvc-demo</module>
         <module>spring-boot-jdbc</module>
+        <module>spring-boot-hibernate</module>
         <module>spring-boot-redis</module>
         <module>spring-boot-admin</module>
         <module>spring-boot-jersey-demo</module>
