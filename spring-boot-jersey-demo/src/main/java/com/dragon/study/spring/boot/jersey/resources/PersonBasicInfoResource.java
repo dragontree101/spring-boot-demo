@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -33,23 +35,28 @@ public class PersonBasicInfoResource {
   public String register(
       @FormParam("phone")
       String phone,
+      @FormParam("email")
+      String email,
+      @FormParam("password")
+      String password,
       @FormParam("country")
       String country) {
     PersonBasicInfo personBasicInfo = new PersonBasicInfo();
     personBasicInfo.setPhone(phone);
+    personBasicInfo.setEmail(email);
+    personBasicInfo.setPassword(password);
     personBasicInfoService.registerPerson(personBasicInfo, country);
     return "success";
   }
 
-  @Path("/queryPerson")
-  @POST
+  @Path("/queryPerson/{phone}")
+  @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  public String queryPerson(
-      @QueryParam("phone")
+  public PersonBasicInfo queryPerson(
+      @PathParam("phone")
       String phone) {
-    personBasicInfoService.queryPersonBasicInfo(phone);
-    return "success";
+    return personBasicInfoService.queryPersonBasicInfo(phone);
   }
 
 }
