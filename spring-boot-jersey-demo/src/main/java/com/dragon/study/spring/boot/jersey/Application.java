@@ -1,6 +1,9 @@
 package com.dragon.study.spring.boot.jersey;
 
+import com.alibaba.fastjson.support.jaxrs.FastJsonProvider;
 import com.dragon.study.spring.boot.jersey.annotation.EnableJersey;
+import com.dragon.study.spring.boot.jersey.provider.UnderlineJsonFeature;
+import com.dragon.study.spring.boot.jersey.provider.UnderlineJsonProvider;
 
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
     scanPackage = "com.dragon.study.spring.boot.jersey.resources",
     applicationPath = "/jersey/*",
     componentClasses = {
-        RequestContextFilter.class
+        RequestContextFilter.class, UnderlineJsonProvider.class, FastJsonProvider.class
     }
 )
 public class Application {

@@ -29,6 +29,6 @@ public class PersonAddressDetailInfo {
   private String country;
   @JSONField(format = "yyyy-MM-dd HH:mm")
   private Date createDate;
-  @JSONField(format = "yyyy-MM-dd HH:mm")
+  @JSONField(name = "update_date", format = "yyyy-MM-dd HH:mm")
   private Date updateDate = new Date();
 }

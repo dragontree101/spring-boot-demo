@@ -27,6 +27,6 @@ public class PersonBasicInfo {
   private String password;
   @JSONField(format = "yyyy-MM-dd HH:mm")
   private Date createDate;
-  @JSONField(format = "yyyy-MM-dd HH:mm")
+  @JSONField(name = "update_date", format = "yyyy-MM-dd HH:mm")
   private Date updateDate = new Date();
 }
