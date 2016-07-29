@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.dragon.study.spring.boot.jersey.config.ServletBean
+com.dragon.study.spring.boot.jersey.config.ServletBean,\
+com.dragon.study.spring.boot.jersey.config.HibernateConfig
 

@@ -14,6 +14,6 @@ import java.util.Date;
 public interface BasicInfoRepository extends JpaRepository<PersonBasicInfo, String> {
 
   @Modifying
-  @Query("UPDATE PersonBasicInfo p set p.phone = ?1, p.email = ?2, p.password = ?3, p.update_date = ?4 WHERE p.phone = ?1")
+  @Query(value = "UPDATE PersonBasicInfo p set p.phone = ?1, p.email = ?2, p.password = ?3, p.updateDate = ?4 WHERE p.phone = ?1")
   boolean update(String phone, String email, String password, Date updateDate);
 }

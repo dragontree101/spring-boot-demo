@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @Import(DataSourceConfiguation.class)
-@EnableJpaRepositories(basePackages = "com.dragon.study.spring.boot.hibernate.service", entityManagerFactoryRef = "personEntityManagerFactory", transactionManagerRef = "personTransactionManager")
+@EnableJpaRepositories(basePackages = "com.dragon.study.spring.boot.hibernate.repository", entityManagerFactoryRef = "personEntityManagerFactory", transactionManagerRef = "personTransactionManager")
 @EnableTransactionManagement
 public class HibernateConfiguration {
 
@@ -35,7 +35,7 @@ public class HibernateConfiguration {
 
     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
     factory.setJpaVendorAdapter(vendorAdapter);
-    factory.setPackagesToScan("com.dragon.study.spring.boot.hibernate.model");
+    factory.setPackagesToScan("com.dragon.study.spring.boot.hibernate.module");
     factory.setDataSource(dataSource);
     Properties p = new Properties();
     p.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
