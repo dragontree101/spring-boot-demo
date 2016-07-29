@@ -9,8 +9,6 @@ import com.dragon.study.spring.boot.hibernate.utils.EncryptUtils;
 import com.dragon.study.spring.boot.jersey.service.IPersonBasicInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

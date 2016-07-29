@@ -1,7 +1,6 @@
 package com.dragon.study.spring.boot.jersey.resources;
 
 import com.dragon.study.spring.boot.hibernate.module.PersonBasicInfo;
-import com.dragon.study.spring.boot.jersey.service.IHelloJerseyService;
 import com.dragon.study.spring.boot.jersey.service.IPersonBasicInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import lombok.extern.slf4j.Slf4j;

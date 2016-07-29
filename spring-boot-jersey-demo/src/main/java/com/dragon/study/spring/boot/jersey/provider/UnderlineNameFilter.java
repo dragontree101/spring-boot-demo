@@ -5,18 +5,10 @@ import com.alibaba.fastjson.serializer.NameFilter;
 /**
  * 在Json序列化的时候,将CamelCase命名的变量转换成underscore类型的json属性名
  *
- * @author yizhe.bai
- * @date 16/4/6.
  */
 public class UnderlineNameFilter implements NameFilter {
 
   private static final char UNDERLINE = '_';
-
-  private final static UnderlineNameFilter instance = new UnderlineNameFilter();
-
-  public static UnderlineNameFilter getGlobalInstance() {
-    return instance;
-  }
 
   @Override
   public String process(Object object, String name, Object value) {

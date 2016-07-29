@@ -2,7 +2,6 @@ package com.dragon.study.spring.boot.jersey;
 
 import com.alibaba.fastjson.support.jaxrs.FastJsonProvider;
 import com.dragon.study.spring.boot.jersey.annotation.EnableJersey;
-import com.dragon.study.spring.boot.jersey.provider.UnderlineJsonFeature;
 import com.dragon.study.spring.boot.jersey.provider.UnderlineJsonProvider;
 
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
