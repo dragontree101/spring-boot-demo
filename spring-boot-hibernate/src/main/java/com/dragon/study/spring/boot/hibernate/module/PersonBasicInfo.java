@@ -19,7 +19,7 @@ import lombok.Data;
 public class PersonBasicInfo {
 
   @Id
-//  @GeneratedValue(strategy = GenerationType.AUTO)
+  //  @GeneratedValue(strategy = GenerationType.AUTO)
   private String phone;
   private String email = "";
   private String password;

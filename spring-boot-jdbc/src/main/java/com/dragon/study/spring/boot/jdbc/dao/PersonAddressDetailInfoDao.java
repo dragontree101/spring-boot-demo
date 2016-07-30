@@ -25,8 +25,6 @@ public class PersonAddressDetailInfoDao extends BaseDao {
   }
 
 
-
-
   //TODO 方便为了测试的时候直接清楚数据库信息
   public void truncatePersonAddressDetailInfoTable() {
     String truncateTableSql = "truncate table person_address_detail_info";

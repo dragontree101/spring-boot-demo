@@ -25,11 +25,12 @@ public class HelloWorldTest {
 
   @Test
   public void testHelloWorld() throws Exception {
-    ResponseEntity responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/hello-world", String.class);
+    ResponseEntity responseEntity = template
+        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/hello-world", String.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
-    String body = (String)responseEntity.getBody();
+    String body = (String) responseEntity.getBody();
     Assert.assertEquals(body, "Hello World");
 
   }

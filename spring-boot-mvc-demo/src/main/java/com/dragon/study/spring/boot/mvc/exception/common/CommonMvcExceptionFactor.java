@@ -8,8 +8,7 @@ public enum CommonMvcExceptionFactor implements MvcExceptionFactor {
   PARAM_MISSING(400, 4000002, "Parameter missing!", ""),
   URL_NOT_FOUND(404, 4040000, "Url not found!", ""),
   HTTP_METHOD_NOT_ALLOWED(405, 4050001, "Http method not allow!", ""),
-  INTERNAL_ERROR(500, 5000001, "Service internal error!", ""),
-  ;
+  INTERNAL_ERROR(500, 5000001, "Service internal error!", ""),;
 
   int httpCode;
   int errCode;

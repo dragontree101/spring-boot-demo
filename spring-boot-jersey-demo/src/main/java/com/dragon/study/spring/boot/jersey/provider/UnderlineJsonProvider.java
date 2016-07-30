@@ -21,7 +21,7 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 @Produces({MediaType.APPLICATION_JSON, "text/json"})
-public class UnderlineJsonProvider implements  MessageBodyWriter<Object> {
+public class UnderlineJsonProvider implements MessageBodyWriter<Object> {
   private static final String JSON_ORIG = "json";
   private static final String PLUS_JSON = "+json";
 

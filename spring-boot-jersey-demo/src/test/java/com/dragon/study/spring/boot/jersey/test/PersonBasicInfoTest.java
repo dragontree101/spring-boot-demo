@@ -61,7 +61,9 @@ public class PersonBasicInfoTest {
     headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
     headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
     HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
-    ResponseEntity<String> response = template.exchange("http://127.0.0.1:8088/jersey/spring-boot/register", HttpMethod.POST, httpEntity, String.class);
+    ResponseEntity<String> response = template
+        .exchange("http://127.0.0.1:8088/jersey/spring-boot/register", HttpMethod.POST, httpEntity,
+            String.class);
 
     HttpStatus status = response.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
@@ -75,8 +77,11 @@ public class PersonBasicInfoTest {
     testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
   }
 
-  private void testQueryPerson(String phone, String email, String password, boolean hasSleep) throws Exception {
-    ResponseEntity<PersonBasicInfo> responseEntity = template.getForEntity("http://127.0.0.1:8088/jersey/spring-boot/queryPerson/" + phone, PersonBasicInfo.class);
+  private void testQueryPerson(String phone, String email, String password, boolean hasSleep)
+      throws Exception {
+    ResponseEntity<PersonBasicInfo> responseEntity = template
+        .getForEntity("http://127.0.0.1:8088/jersey/spring-boot/queryPerson/" + phone,
+            PersonBasicInfo.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
@@ -85,8 +90,9 @@ public class PersonBasicInfoTest {
     Assert.assertEquals(body.getPhone(), phone);
     Assert.assertEquals(body.getEmail(), email);
     Assert.assertEquals(body.getPassword(), EncryptUtils.encryptMD5(password));
-    if(hasSleep) {
-      Assert.assertEquals(body.getUpdateDate().getTime() - body.getCreateDate().getTime() > 8000, true);
+    if (hasSleep) {
+      Assert.assertEquals(body.getUpdateDate().getTime() - body.getCreateDate().getTime() > 8000,
+          true);
     }
   }
 

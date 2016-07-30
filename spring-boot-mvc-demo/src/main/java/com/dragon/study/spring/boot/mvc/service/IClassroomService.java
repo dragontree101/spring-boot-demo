@@ -11,8 +11,11 @@ import java.util.List;
 public interface IClassroomService {
 
   String getTeacherName(int grade, int classroom);
+
   List<PersonModel> getTopTenStudent(int grade, int classroom);
+
   List<PersonModel> getBiggerThan60(int grade, int classroom);
+
   ClassroomModel getClassroom(int grade, int classroom);
 
 }

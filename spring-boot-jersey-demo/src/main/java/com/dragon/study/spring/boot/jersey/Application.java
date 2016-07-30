@@ -21,8 +21,7 @@ import org.springframework.context.annotation.Configuration;
     applicationPath = "/jersey/*",
     componentClasses = {
         RequestContextFilter.class, UnderlineJsonProvider.class, FastJsonProvider.class
-    }
-)
+    })
 public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);

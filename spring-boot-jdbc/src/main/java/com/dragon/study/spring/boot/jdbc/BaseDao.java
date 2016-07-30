@@ -25,8 +25,8 @@ public abstract class BaseDao {
     return namedParameterJdbcTemplate;
   }
 
-  protected <T> Optional<T> queryForObject(String sql,
-      RowMapper<T> rowMapper, Map<String, ?> paramMap) {
+  protected <T> Optional<T> queryForObject(String sql, RowMapper<T> rowMapper,
+      Map<String, ?> paramMap) {
     try {
       T result = getNamedParameterJdbcTemplate().queryForObject(sql, paramMap, rowMapper);
       if (result != null) {
@@ -40,8 +40,8 @@ public abstract class BaseDao {
     return Optional.empty();
   }
 
-  protected <T> Optional<List<T>> queryForList(String sql,
-      RowMapper<T> rowMapper, Map<String, ?> paramMap) {
+  protected <T> Optional<List<T>> queryForList(String sql, RowMapper<T> rowMapper,
+      Map<String, ?> paramMap) {
     try {
       List<T> result = getNamedParameterJdbcTemplate().query(sql, paramMap, rowMapper);
       return Optional.ofNullable(result);

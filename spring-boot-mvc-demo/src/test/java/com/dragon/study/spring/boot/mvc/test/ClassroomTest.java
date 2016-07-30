@@ -31,17 +31,20 @@ public class ClassroomTest {
 
   @Test
   public void testTeacherName() throws Exception {
-    ResponseEntity responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/teacherName?grade=1&classroom=10", String.class);
+    ResponseEntity responseEntity = template
+        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/teacherName?grade=1&classroom=10",
+            String.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
-    String body = (String)responseEntity.getBody();
+    String body = (String) responseEntity.getBody();
     Assert.assertEquals(body.length(), UUID.randomUUID().toString().length());
   }
 
   @Test
   public void testClassroom() throws Exception {
-    ResponseEntity<ClassroomModel> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/classroom/1/10", ClassroomModel.class);
+    ResponseEntity<ClassroomModel> responseEntity = template
+        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/classroom/1/10", ClassroomModel.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
@@ -53,7 +56,9 @@ public class ClassroomTest {
 
   @Test
   public void testTopTen() throws Exception {
-    ResponseEntity<PersonModel[]> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/topTen?grade=1&classroom=10", PersonModel[].class);
+    ResponseEntity<PersonModel[]> responseEntity = template
+        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/topTen?grade=1&classroom=10",
+            PersonModel[].class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
@@ -64,7 +69,9 @@ public class ClassroomTest {
 
   @Test
   public void testBiggerThan60() throws Exception {
-    ResponseEntity<PersonModel[]> responseEntity = template.getForEntity("http://127.0.0.1:8088/mvc/spring-boot/biggerThan60?grade=1&classroom=10", PersonModel[].class);
+    ResponseEntity<PersonModel[]> responseEntity = template
+        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/biggerThan60?grade=1&classroom=10",
+            PersonModel[].class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 

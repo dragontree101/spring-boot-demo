@@ -31,7 +31,8 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
   public KeyGenerator phoneKeyGenerator() {
     return (target, method, params) -> {
       StringBuilder sb = new StringBuilder();
-      sb.append(Arrays.asList(params).stream().map(p -> p.toString()).collect(Collectors.joining(",")));
+      sb.append(
+          Arrays.asList(params).stream().map(p -> p.toString()).collect(Collectors.joining(",")));
       return sb.toString();
     };
   }
@@ -44,7 +45,8 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
   @Bean
   public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
     StringRedisTemplate template = new StringRedisTemplate(factory);
-    Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+    Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(
+        Object.class);
     ObjectMapper om = new ObjectMapper();
     om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
     om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);

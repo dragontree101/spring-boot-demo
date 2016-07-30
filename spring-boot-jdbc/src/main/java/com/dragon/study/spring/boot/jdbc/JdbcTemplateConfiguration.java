@@ -35,7 +35,8 @@ public class JdbcTemplateConfiguration {
   }
 
   @Bean
-  public NamedParameterJdbcTemplate namedParameterJdbcTemplate(JdbcTemplateFactory jdbcTemplateFactory) {
+  public NamedParameterJdbcTemplate namedParameterJdbcTemplate(
+      JdbcTemplateFactory jdbcTemplateFactory) {
     return new NamedParameterJdbcTemplate(jdbcTemplateFactory.getJdbcTemplate());
   }
 }

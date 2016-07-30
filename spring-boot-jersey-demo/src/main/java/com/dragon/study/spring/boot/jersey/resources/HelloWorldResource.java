@@ -32,7 +32,9 @@ public class HelloWorldResource {
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  public String helloJersey(@QueryParam("name") String name) {
+  public String helloJersey(
+      @QueryParam("name")
+      String name) {
     String info = "info";
     log.debug("hello jersey controller, name is {}, log level is {}", name, "debug");
     log.info("hello jersey controller, name is {}, log level is {}", name, info);
@@ -47,7 +49,9 @@ public class HelloWorldResource {
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  public String helloJerseyPath(@PathParam("path") String path) {
+  public String helloJerseyPath(
+      @PathParam("path")
+      String path) {
     log.info("hello jersey controller, path is {}, log level is {}", path);
 
     helloWorldService.helloJersey();
@@ -58,7 +62,9 @@ public class HelloWorldResource {
   @POST
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  public String helloJerseyPost(@FormParam("name") String name) {
+  public String helloJerseyPost(
+      @FormParam("name")
+      String name) {
     String info = "info";
     log.info("hello jersey post controller, name is {}, log level is {}", name, info);
 

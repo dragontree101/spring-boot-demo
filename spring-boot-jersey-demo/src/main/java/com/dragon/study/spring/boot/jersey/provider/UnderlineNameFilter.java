@@ -4,7 +4,6 @@ import com.alibaba.fastjson.serializer.NameFilter;
 
 /**
  * 在Json序列化的时候,将CamelCase命名的变量转换成underscore类型的json属性名
- *
  */
 public class UnderlineNameFilter implements NameFilter {
 

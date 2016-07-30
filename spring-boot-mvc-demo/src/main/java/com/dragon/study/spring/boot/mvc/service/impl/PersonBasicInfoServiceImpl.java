@@ -47,7 +47,7 @@ public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
     personAddressDetailInfo.setPostId("000000");
     personAddressDetailInfo.setCreateDate(new Date());
     personAddressDetailInfo.setUpdateDate(new Date());
-    if(country == null) {
+    if (country == null) {
       personAddressDetailInfo.setCountry("中国");
     } else {
       personAddressDetailInfo.setCountry(country);
@@ -61,8 +61,9 @@ public class PersonBasicInfoServiceImpl implements IPersonBasicInfoService {
   @Cacheable(value = "personInfo", keyGenerator = "phoneKeyGenerator")
   public PersonBasicInfo queryPersonBasicInfo(String phone) {
     PersonBasicInfo personBasicInfo = personBasicInfoDao.getPersonBasicInfo(phone);
-    if(personBasicInfo == null) {
-      throw new PersonBasicInfoException(PersonBasicInfoException.BasicInfoExceptionFactor.NO_PERSON_FAILURE);
+    if (personBasicInfo == null) {
+      throw new PersonBasicInfoException(
+          PersonBasicInfoException.BasicInfoExceptionFactor.NO_PERSON_FAILURE);
     }
 
     return personBasicInfo;
