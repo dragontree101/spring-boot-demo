@@ -6,6 +6,7 @@ import com.dragon.study.spring.boot.hibernate.repository.AddressDetailRepository
 import com.dragon.study.spring.boot.hibernate.repository.BasicInfoRepository;
 import com.dragon.study.spring.boot.hibernate.utils.EncryptUtils;
 import com.dragon.study.spring.boot.jersey.Application;
+import com.dragon.study.spring.boot.jersey.module.CommonResponse;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -61,15 +62,12 @@ public class PersonBasicInfoTest {
     headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
     headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
     HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
-    ResponseEntity<String> response = template
+    ResponseEntity<CommonResponse> response = template
         .exchange("http://127.0.0.1:8088/jersey/spring-boot/register", HttpMethod.POST, httpEntity,
-            String.class);
+            CommonResponse.class);
 
     HttpStatus status = response.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
-
-    String isSuccess = response.getBody();
-    Assert.assertEquals(isSuccess, "success");
 
     testQueryPerson("18507313226", "dragonlong1986@126.com", "longlong0", false);
 

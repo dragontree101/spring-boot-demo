@@ -1,6 +1,10 @@
 package com.dragon.study.spring.boot.jersey.resources;
 
+import com.google.common.base.Strings;
+
 import com.dragon.study.spring.boot.hibernate.module.PersonBasicInfo;
+import com.dragon.study.spring.boot.jersey.exception.PersonBasicInfoException;
+import com.dragon.study.spring.boot.jersey.module.CommonResponse;
 import com.dragon.study.spring.boot.jersey.service.IPersonBasicInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +34,7 @@ public class PersonBasicInfoResource {
   @POST
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  public String register(
+  public CommonResponse register(
       @FormParam("phone")
       String phone,
       @FormParam("email")
@@ -39,12 +43,17 @@ public class PersonBasicInfoResource {
       String password,
       @FormParam("country")
       String country) {
+    if(Strings.isNullOrEmpty(phone)) {
+      log.error("phone is empty or null");
+      throw new PersonBasicInfoException(
+          PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
+    }
     PersonBasicInfo personBasicInfo = new PersonBasicInfo();
     personBasicInfo.setPhone(phone);
     personBasicInfo.setEmail(email);
     personBasicInfo.setPassword(password);
     personBasicInfoService.registerPerson(personBasicInfo, country);
-    return "success";
+    return CommonResponse.of(true);
   }
 
   @Path("/queryPerson/{phone}")
@@ -54,6 +63,11 @@ public class PersonBasicInfoResource {
   public PersonBasicInfo queryPerson(
       @PathParam("phone")
       String phone) {
+    if(Strings.isNullOrEmpty(phone)) {
+      log.error("phone is empty or null");
+      throw new PersonBasicInfoException(
+          PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
+    }
     return personBasicInfoService.queryPersonBasicInfo(phone);
   }
 

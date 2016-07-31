@@ -2,6 +2,7 @@ package com.dragon.study.spring.boot.jersey;
 
 import com.alibaba.fastjson.support.jaxrs.FastJsonProvider;
 import com.dragon.study.spring.boot.jersey.annotation.EnableJersey;
+import com.dragon.study.spring.boot.jersey.exception.JerseyExceptionMapper;
 import com.dragon.study.spring.boot.jersey.provider.UnderlineJsonProvider;
 
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
@@ -20,7 +21,13 @@ import org.springframework.context.annotation.Configuration;
     scanPackage = "com.dragon.study.spring.boot.jersey.resources",
     applicationPath = "/jersey/*",
     componentClasses = {
-        RequestContextFilter.class, UnderlineJsonProvider.class, FastJsonProvider.class
+        RequestContextFilter.class,
+        //把驼峰格式字段字符转换成下划线
+        UnderlineJsonProvider.class,
+        //通过利用fastjson的注解来转换字段
+        FastJsonProvider.class,
+        //统一异常处理
+        JerseyExceptionMapper.class,
     })
 public class Application {
   public static void main(String[] args) {
