@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
 
 import lombok.Data;
 
@@ -20,8 +21,11 @@ public class PersonBasicInfo {
 
   @Id
   //  @GeneratedValue(strategy = GenerationType.AUTO)
+  @FormParam("phone")
   private String phone;
+  @FormParam("email")
   private String email = "";
+  @FormParam("password")
   private String password;
   @JSONField(format = "yyyy-MM-dd HH:mm")
   private Date createDate;

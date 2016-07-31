@@ -9,6 +9,7 @@ import com.dragon.study.spring.boot.jersey.service.IPersonBasicInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -35,23 +36,15 @@ public class PersonBasicInfoResource {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
   public CommonResponse register(
-      @FormParam("phone")
-      String phone,
-      @FormParam("email")
-      String email,
-      @FormParam("password")
-      String password,
+      @BeanParam
+      PersonBasicInfo personBasicInfo,
       @FormParam("country")
       String country) {
-    if(Strings.isNullOrEmpty(phone)) {
+    if(Strings.isNullOrEmpty(personBasicInfo.getPhone())) {
       log.error("phone is empty or null");
       throw new PersonBasicInfoException(
           PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
     }
-    PersonBasicInfo personBasicInfo = new PersonBasicInfo();
-    personBasicInfo.setPhone(phone);
-    personBasicInfo.setEmail(email);
-    personBasicInfo.setPassword(password);
     personBasicInfoService.registerPerson(personBasicInfo, country);
     return CommonResponse.of(true);
   }
