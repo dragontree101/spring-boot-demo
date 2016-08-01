@@ -21,6 +21,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-admin</module>
         <module>spring-boot-jersey-demo</module>
+        <module>spring-boot-security</module>
     </modules>
 
     <dependencyManagement>
