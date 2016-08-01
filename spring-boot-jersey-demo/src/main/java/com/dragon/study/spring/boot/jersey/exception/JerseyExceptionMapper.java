@@ -1,7 +1,5 @@
 package com.dragon.study.spring.boot.jersey.exception;
 
-import com.google.common.base.Strings;
-
 import com.alibaba.fastjson.JSON;
 import com.dragon.study.spring.boot.jersey.exception.common.MvcException;
 import com.dragon.study.spring.boot.jersey.exception.common.MvcExceptionFactor;
