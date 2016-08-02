@@ -18,9 +18,17 @@
 
 这个模块主要是提供了一些jdbc的配置，并且封装一些数据逻辑的操作
 
+- hibernate
+
+这个模块主要是提供了jpa + hibernate的操作数据库
+
 - redis
 
 这个模块主要是提供了redis缓存的配置
+
+- security
+
+这个模块主要是简单使用spring-boot-starter-security来完成简单的认证逻辑
 
 
 等等
