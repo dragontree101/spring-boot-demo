@@ -18,9 +18,9 @@ import java.util.Optional;
 @Repository
 public class AuthUserDao extends BaseDao {
 
-  private static final String SAVE_USER_SQL = "INSERT INTO security_user (username, password, role, create_date, update_date) " + " VALUES (:user, :password, :role, :createDate, :updateDate)";
+  private static final String SAVE_USER_SQL = "INSERT INTO security_user (username, password, create_date, update_date) " + " VALUES (:username, :password, :createDate, :updateDate)";
 
-  private static final String GET_USER_SQL = "SELECT username, password, role FROM security_user WHERE username = :username";
+  private static final String GET_USER_SQL = "SELECT * FROM security_user WHERE username = :username";
 
   public boolean saveUser(User user) {
     BeanPropertySqlParameterSource beanParamSource = new BeanPropertySqlParameterSource(user);

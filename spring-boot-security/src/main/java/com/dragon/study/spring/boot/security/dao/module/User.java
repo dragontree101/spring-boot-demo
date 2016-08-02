@@ -1,5 +1,7 @@
 package com.dragon.study.spring.boot.security.dao.module;
 
+import java.util.Date;
+
 import lombok.Data;
 
 /**
@@ -10,8 +12,7 @@ public class User {
 
   private String username;
   private String password;
-  private Role role;
-
-
+  private Date createDate;
+  private Date updateDate;
 }
 
