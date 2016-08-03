@@ -19,20 +19,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-  @Override
   @Bean
   public UserDetailsService userDetailsService() {
     return new UserDetailsServiceImpl();
   }
 
   @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService());
-  }
-
-  @Override
   protected void configure(HttpSecurity http) throws Exception {
 //    对于根路径和home目录不需要认证,认证是到login的登录页
-    http.authorizeRequests().antMatchers("/jersey/spring-boot/hello-jersey/*").permitAll().anyRequest().fullyAuthenticated();
+    http.authorizeRequests().antMatchers("/jersey/spring-boot/hello-jersey/*").permitAll().anyRequest().authenticated()
+    .and().formLogin()
+        .and()
+        .httpBasic();
   }
 }

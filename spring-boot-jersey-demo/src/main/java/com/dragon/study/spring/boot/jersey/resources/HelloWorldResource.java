@@ -3,6 +3,8 @@ package com.dragon.study.spring.boot.jersey.resources;
 import com.dragon.study.spring.boot.jersey.service.IHelloJerseyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -28,10 +30,13 @@ public class HelloWorldResource {
   @Autowired
   IHelloJerseyService helloWorldService;
 
+
+  //TODO curl -u 'dragon:longlong0' 'http://127.0.0.1:8088/jersey/spring-boot/hello-jersey?name=longzhe'
   @Path("/hello-jersey")
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
+  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
   public String helloJersey(
       @QueryParam("name")
       String name) {
