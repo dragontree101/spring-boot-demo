@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
@@ -20,13 +21,15 @@ import lombok.extern.slf4j.Slf4j;
 @EnableConfigurationProperties({JdbcPoolConfig.class, MysqlProperties.class})
 @Slf4j
 public class DataSourceConfiguation {
+
   @Autowired
   JdbcPoolConfig jdbcPoolConfig;
 
   @Autowired
   MysqlProperties mysqlProperties;
 
-  @Bean
+  @Bean(name = "hibernateDataSource")
+  @Primary
   public DataSource dataSource() {
     String url = mysqlProperties.getUrl();
     log.info("base url " + url.substring(0, url.indexOf("?")));

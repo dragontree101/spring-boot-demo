@@ -52,7 +52,7 @@ public class HelloWorldResource {
   public String helloJerseyPath(
       @PathParam("path")
       String path) {
-    log.info("hello jersey controller, path is {}, log level is {}", path);
+    log.info("hello jersey controller, path is {}, log level is {}", path, "INFO");
 
     helloWorldService.helloJersey();
     return "Hello World";

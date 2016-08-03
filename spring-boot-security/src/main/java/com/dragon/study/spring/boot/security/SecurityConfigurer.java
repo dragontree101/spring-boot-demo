@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   @Bean
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    //对于根路径和home目录不需要认证,认证是到login的登录页
-    http.authorizeRequests().antMatchers("/spring-boot/hello-world").permitAll().anyRequest().authenticated();
+//    对于根路径和home目录不需要认证,认证是到login的登录页
+    http.authorizeRequests().antMatchers("/jersey/spring-boot/hello-jersey/*").permitAll().anyRequest().fullyAuthenticated();
   }
 }

@@ -1,6 +1,5 @@
 package com.dragon.study.spring.boot.hibernate;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class HibernateConfiguration {
 
-  @Autowired
+  @Resource(name = "hibernateDataSource")
   private DataSource dataSource;
 
   @Bean

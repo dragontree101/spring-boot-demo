@@ -29,7 +29,7 @@ public class JdbcDataSourceConfiguration {
   @Autowired
   MysqlProperties mysqlProperties;
 
-  @Bean
+  @Bean(name = "securityDataSource")
   public DataSource dataSource() {
     String url = mysqlProperties.getUrl();
     log.info("base url " + url.substring(0, url.indexOf("?")));

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.annotation.Resource;
+
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Setter
 public abstract class BaseDao {
 
-  @Autowired
+  @Resource(name = "securityJdbcTemplate")
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {

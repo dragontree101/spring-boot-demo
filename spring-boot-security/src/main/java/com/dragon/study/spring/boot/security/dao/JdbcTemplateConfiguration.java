@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 
@@ -14,12 +15,16 @@ import javax.sql.DataSource;
 @Configuration
 @Import(JdbcDataSourceConfiguration.class)
 public class JdbcTemplateConfiguration {
+
+  @Resource(name = "securityDataSource")
+  private DataSource dataSource;
+
   @Bean
-  public JdbcTemplateFactory jdbcTemplateFactory(DataSource dataSource) {
+  public JdbcTemplateFactory jdbcTemplateFactory() {
     return new JdbcTemplateFactory(dataSource);
   }
 
-  @Bean
+  @Bean(name = "securityJdbcTemplate")
   public NamedParameterJdbcTemplate namedParameterJdbcTemplate(
       JdbcTemplateFactory jdbcTemplateFactory) {
     return new NamedParameterJdbcTemplate(jdbcTemplateFactory.getJdbcTemplate());

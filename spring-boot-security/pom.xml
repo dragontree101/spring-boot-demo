@@ -11,19 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-boot-security</artifactId>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.dragon.study.spring.boot.mvc.Application</mainClass>
-                    <classifier>exec</classifier>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 
     <dependencies>
         <dependency>

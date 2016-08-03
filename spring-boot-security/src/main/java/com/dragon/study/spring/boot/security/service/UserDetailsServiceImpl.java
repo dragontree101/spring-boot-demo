@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     if(roles == null || roles.isEmpty()) {
       return null;
     }
-    
+
     List<GrantedAuthority> auth = AuthorityUtils
         .commaSeparatedStringToAuthorityList(roles.stream().map(r -> r.getRole()).collect(
             Collectors.joining(",")));
