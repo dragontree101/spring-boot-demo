@@ -7,8 +7,7 @@ import com.google.common.base.MoreObjects;
  */
 public enum Role {
   ADMIN("管理员", 0),
-  DEVELOPER("开发者", 1),
-  ;
+  DEVELOPER("开发者", 1),;
 
   private final String name;
   private final int index;

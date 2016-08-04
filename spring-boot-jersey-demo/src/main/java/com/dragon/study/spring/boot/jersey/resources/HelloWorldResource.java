@@ -3,7 +3,6 @@ package com.dragon.study.spring.boot.jersey.resources;
 import com.dragon.study.spring.boot.jersey.service.IHelloJerseyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.ws.rs.Consumes;

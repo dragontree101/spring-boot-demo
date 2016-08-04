@@ -40,7 +40,7 @@ public class PersonBasicInfoResource {
       PersonBasicInfo personBasicInfo,
       @FormParam("country")
       String country) {
-    if(Strings.isNullOrEmpty(personBasicInfo.getPhone())) {
+    if (Strings.isNullOrEmpty(personBasicInfo.getPhone())) {
       log.error("phone is empty or null");
       throw new PersonBasicInfoException(
           PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
@@ -56,7 +56,7 @@ public class PersonBasicInfoResource {
   public PersonBasicInfo queryPerson(
       @PathParam("phone")
       String phone) {
-    if(Strings.isNullOrEmpty(phone)) {
+    if (Strings.isNullOrEmpty(phone)) {
       log.error("phone is empty or null");
       throw new PersonBasicInfoException(
           PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);

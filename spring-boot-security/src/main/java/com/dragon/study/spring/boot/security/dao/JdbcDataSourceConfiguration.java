@@ -6,7 +6,6 @@ import com.dragon.study.spring.boot.security.dao.config.JdbcPoolConfig;
 import com.dragon.study.spring.boot.security.dao.config.MysqlProperties;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

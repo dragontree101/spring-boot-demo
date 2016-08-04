@@ -38,13 +38,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     String password = user.getPassword();
 
     List<SecurityRole> roles = roleDao.getRoles(username);
-    if(roles == null || roles.isEmpty()) {
+    if (roles == null || roles.isEmpty()) {
       return null;
     }
 
-    List<GrantedAuthority> auth = AuthorityUtils
-        .commaSeparatedStringToAuthorityList(roles.stream().map(r -> r.getRole()).collect(
-            Collectors.joining(",")));
+    List<GrantedAuthority> auth = AuthorityUtils.commaSeparatedStringToAuthorityList(
+        roles.stream().map(r -> r.getRole()).collect(Collectors.joining(",")));
 
     return new User(username, password, auth);
   }
