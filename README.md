@@ -28,7 +28,7 @@
 
 - security
 
-这个模块主要是简单使用spring-boot-starter-security来完成简单的认证逻辑
+这个模块主要是简单使用spring-boot-starter-security来完成简单的认证逻辑, 其中是简单的通过数据库进行了用户名、密码和权限角色的管理
 
 
 等等
