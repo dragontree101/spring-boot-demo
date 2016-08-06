@@ -17,10 +17,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by dragon on 16/8/1.
  */
 @Service
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Autowired
@@ -33,12 +36,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     SecurityUser user = userDao.getUser(username);
     if (user == null) {
+      log.warn("user is null, user name is {}", username);
       return null;
     }
     String password = user.getPassword();
 
     List<SecurityRole> roles = roleDao.getRoles(username);
     if (roles == null || roles.isEmpty()) {
+      log.warn("role is null or empty, user name is {}", username);
       return null;
     }
 
