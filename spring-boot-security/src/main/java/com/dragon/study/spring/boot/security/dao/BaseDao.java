@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Setter
 public abstract class BaseDao {
 
-  @Resource(name = "securityJdbcTemplate")
+  @Resource(name = "securityNpjt")
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {

@@ -5,6 +5,7 @@ import com.dragon.study.spring.boot.mvc.model.PersonModel;
 import com.dragon.study.spring.boot.mvc.service.IClassroomService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/spring-boot")
 @Slf4j
+@PreAuthorize("hasAuthority('user')")
 public class ClassroomController {
 
   @Autowired
@@ -35,6 +37,7 @@ public class ClassroomController {
     return classroomService.getTeacherName(grade, classroom);
   }
 
+  @PreAuthorize("hasAuthority('coder')")
   @RequestMapping(value = "/classroom/{grade}/{classroom}", method = RequestMethod.GET)
   public ClassroomModel classroom(
       @PathVariable
@@ -44,6 +47,7 @@ public class ClassroomController {
     return classroomService.getClassroom(grade, classroom);
   }
 
+  @PreAuthorize("hasAuthority('admin')")
   @RequestMapping(value = "/topTen", method = RequestMethod.GET)
   public List<PersonModel> topTen(
       @RequestParam(name = "grade", required = true)

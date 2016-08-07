@@ -38,11 +38,6 @@
             <artifactId>spring-boot-hibernate</artifactId>
             <version>${parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.dragon.study.springboot</groupId>
-            <artifactId>spring-boot-security</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

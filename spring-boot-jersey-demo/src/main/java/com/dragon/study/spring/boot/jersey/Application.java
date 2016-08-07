@@ -5,6 +5,7 @@ import com.dragon.study.spring.boot.jersey.annotation.EnableJersey;
 import com.dragon.study.spring.boot.jersey.exception.JerseyExceptionMapper;
 import com.dragon.study.spring.boot.jersey.provider.UnderlineJsonProvider;
 
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -28,6 +29,7 @@ import org.springframework.context.annotation.Configuration;
         FastJsonProvider.class,
         //统一异常处理
         JerseyExceptionMapper.class,
+        RolesAllowedDynamicFeature.class,
     })
 public class Application {
   public static void main(String[] args) {

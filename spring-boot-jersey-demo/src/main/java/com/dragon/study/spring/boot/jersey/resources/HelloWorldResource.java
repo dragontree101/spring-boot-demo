@@ -3,8 +3,9 @@ package com.dragon.study.spring.boot.jersey.resources;
 import com.dragon.study.spring.boot.jersey.service.IHelloJerseyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Path("/spring-boot")
 @Slf4j
+@PermitAll
 public class HelloWorldResource {
 
   private static final String WARN = "warn";
@@ -35,7 +37,7 @@ public class HelloWorldResource {
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+  @RolesAllowed("user")
   public String helloJersey(
       @QueryParam("name")
       String name) {

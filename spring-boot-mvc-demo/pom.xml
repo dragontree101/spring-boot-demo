@@ -54,6 +54,12 @@
 
         <dependency>
             <groupId>com.dragon.study.springboot</groupId>
+            <artifactId>spring-boot-security</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dragon.study.springboot</groupId>
             <artifactId>spring-boot-redis</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
