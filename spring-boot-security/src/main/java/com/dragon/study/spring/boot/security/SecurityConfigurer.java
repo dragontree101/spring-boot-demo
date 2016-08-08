@@ -12,8 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * Created by dragon on 16/8/1.
- * 这个类只能为spring-mvc作为安全认证,不能用于jersey模块
+ * Created by dragon on 16/8/1. 这个类只能为spring-mvc作为安全认证,不能用于jersey模块
  */
 @Configuration
 @EnableWebSecurity
@@ -33,7 +32,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     //    对于根路径和home目录不需要认证,认证是到login的登录页
-    http.authorizeRequests().antMatchers("/mvc/spring-boot/hello-world").permitAll()
-        .anyRequest().authenticated().and().formLogin().and().httpBasic();
+    http.authorizeRequests().antMatchers("/mvc/spring-boot/hello-world").permitAll().anyRequest()
+        .authenticated().and().formLogin().and().httpBasic();
   }
 }

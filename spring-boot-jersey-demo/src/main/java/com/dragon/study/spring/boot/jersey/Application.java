@@ -28,8 +28,7 @@ import org.springframework.context.annotation.Configuration;
         //通过利用fastjson的注解来转换字段
         FastJsonProvider.class,
         //统一异常处理
-        JerseyExceptionMapper.class,
-        RolesAllowedDynamicFeature.class,
+        JerseyExceptionMapper.class, RolesAllowedDynamicFeature.class,
     })
 public class Application {
   public static void main(String[] args) {

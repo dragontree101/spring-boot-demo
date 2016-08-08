@@ -34,7 +34,8 @@ public class DynamicDataSourcesConfiguration implements BeanFactoryPostProcessor
   @Override
   public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
       throws BeansException {
-    DynamicMysqlProperties dynamicMysqlProperties = resolverSetting("mysql", DynamicMysqlProperties.class);
+    DynamicMysqlProperties dynamicMysqlProperties = resolverSetting("mysql",
+        DynamicMysqlProperties.class);
     if (dynamicMysqlProperties == null) {
       return;
     }
@@ -48,8 +49,8 @@ public class DynamicDataSourcesConfiguration implements BeanFactoryPostProcessor
   private void createBean(ConfigurableListableBeanFactory beanFactory,
       Map.Entry<String, MysqlProperties> entry) {
     JdbcPoolConfig jdbcPoolConfig = resolverSetting("mysql.pool", JdbcPoolConfig.class);
-    if(jdbcPoolConfig == null) {
-      return ;
+    if (jdbcPoolConfig == null) {
+      return;
     }
     MysqlProperties mysqlProperties = entry.getValue();
     String prefixName = entry.getKey();
@@ -71,16 +72,17 @@ public class DynamicDataSourcesConfiguration implements BeanFactoryPostProcessor
     dataSource.setTestOnBorrow(jdbcPoolConfig.isTestOnBorrow());
     dataSource.setTestOnReturn(jdbcPoolConfig.isTestOnReturn());
 
-    DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(
-        dataSource);
+    DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
     AnnotationTransactionAspect.aspectOf().setTransactionManager(transactionManager);
     JdbcTemplateFactory jdbcTemplateFactory = new JdbcTemplateFactory(dataSource);
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplateFactory.getJdbcTemplate());
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(
+        jdbcTemplateFactory.getJdbcTemplate());
 
     register(beanFactory, transactionManager, prefixName + "TransactionManager", prefixName + "Tx");
     register(beanFactory, jdbcTemplateFactory, prefixName + "JdbcTemplateFactory", prefixName);
     register(beanFactory, dataSource, prefixName + "DataSource", prefixName + "Ds");
-    register(beanFactory, namedParameterJdbcTemplate, prefixName + "NamedParameterJdbcTemplate", prefixName + "Npjt");
+    register(beanFactory, namedParameterJdbcTemplate, prefixName + "NamedParameterJdbcTemplate",
+        prefixName + "Npjt");
   }
 
   private void register(ConfigurableListableBeanFactory beanFactory, Object bean, String name,
