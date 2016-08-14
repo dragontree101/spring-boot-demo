@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created by dragon on 16/7/12.
  */
 @RestController
-@RequestMapping("/spring-boot")
+@RequestMapping("/spring-boot/person")
 @Slf4j
 public class PersonBasicInfoController {
 
@@ -44,6 +44,7 @@ public class PersonBasicInfoController {
           PersonBasicInfoException.BasicInfoExceptionFactor.NO_PHONE_FAILURE);
     }
 
+    log.info("register phone is {}", personBasicInfo.getPhone());
     personBasicInfoService.registerPerson(personBasicInfo, country);
     return CommonResponse.of(true);
   }

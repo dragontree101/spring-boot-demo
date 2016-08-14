@@ -13,31 +13,29 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
 /**
  * Created by dragon on 16/7/12.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class, webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PersonBasicInfoTest {
 
-  RestTemplate template = new TestRestTemplate();
+  @Autowired
+  TestRestTemplate template;
 
   @Autowired
   private BasicInfoRepository basicInfoRepository;
@@ -63,7 +61,7 @@ public class PersonBasicInfoTest {
     headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
     HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
     ResponseEntity<CommonResponse> response = template
-        .exchange("http://127.0.0.1:8088/jersey/spring-boot/register", HttpMethod.POST, httpEntity,
+        .exchange("/jersey/spring-boot/register", HttpMethod.POST, httpEntity,
             CommonResponse.class);
 
     HttpStatus status = response.getStatusCode();
@@ -78,7 +76,7 @@ public class PersonBasicInfoTest {
   private void testQueryPerson(String phone, String email, String password, boolean hasSleep)
       throws Exception {
     ResponseEntity<PersonBasicInfo> responseEntity = template
-        .getForEntity("http://127.0.0.1:8088/jersey/spring-boot/queryPerson/" + phone,
+        .getForEntity("/jersey/spring-boot/queryPerson/" + phone,
             PersonBasicInfo.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());

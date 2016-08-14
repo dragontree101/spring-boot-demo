@@ -20,9 +20,8 @@ import lombok.extern.slf4j.Slf4j;
  * Created by dragon on 16/7/10.
  */
 @RestController
-@RequestMapping("/spring-boot")
+@RequestMapping("/spring-boot/classroom")
 @Slf4j
-@PreAuthorize("hasAuthority('user')")
 public class ClassroomController {
 
   @Autowired
@@ -37,7 +36,6 @@ public class ClassroomController {
     return classroomService.getTeacherName(grade, classroom);
   }
 
-  @PreAuthorize("hasAuthority('coder')")
   @RequestMapping(value = "/classroom/{grade}/{classroom}", method = RequestMethod.GET)
   public ClassroomModel classroom(
       @PathVariable
@@ -47,7 +45,6 @@ public class ClassroomController {
     return classroomService.getClassroom(grade, classroom);
   }
 
-  @PreAuthorize("hasAuthority('admin')")
   @RequestMapping(value = "/topTen", method = RequestMethod.GET)
   public List<PersonModel> topTen(
       @RequestParam(name = "grade", required = true)

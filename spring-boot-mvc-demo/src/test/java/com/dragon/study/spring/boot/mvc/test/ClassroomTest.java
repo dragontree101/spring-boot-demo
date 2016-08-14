@@ -7,12 +7,12 @@ import com.dragon.study.spring.boot.mvc.model.PersonModel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -22,17 +22,17 @@ import java.util.UUID;
 /**
  * Created by dragon on 16/7/10.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class, webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ClassroomTest {
 
-  RestTemplate template = new TestRestTemplate();
+  @Autowired
+  TestRestTemplate template;
 
   @Test
   public void testTeacherName() throws Exception {
     ResponseEntity responseEntity = template
-        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/teacherName?grade=1&classroom=10",
+        .getForEntity("/mvc/spring-boot/classroom/teacherName?grade=1&classroom=10",
             String.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
@@ -44,7 +44,7 @@ public class ClassroomTest {
   @Test
   public void testClassroom() throws Exception {
     ResponseEntity<ClassroomModel> responseEntity = template
-        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/classroom/1/10", ClassroomModel.class);
+        .getForEntity("/mvc/spring-boot/classroom/classroom/1/10", ClassroomModel.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
@@ -57,20 +57,19 @@ public class ClassroomTest {
   @Test
   public void testTopTen() throws Exception {
     ResponseEntity<PersonModel[]> responseEntity = template
-        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/topTen?grade=1&classroom=10",
+        .getForEntity("/mvc/spring-boot/classroom/topTen?grade=1&classroom=10",
             PersonModel[].class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
     List<PersonModel> body = Arrays.asList(responseEntity.getBody());
     Assert.assertEquals(body.size(), 10);
-
   }
 
   @Test
   public void testBiggerThan60() throws Exception {
     ResponseEntity<PersonModel[]> responseEntity = template
-        .getForEntity("http://127.0.0.1:8088/mvc/spring-boot/biggerThan60?grade=1&classroom=10",
+        .getForEntity("/mvc/spring-boot/classroom/biggerThan60?grade=1&classroom=10",
             PersonModel[].class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());

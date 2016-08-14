@@ -38,8 +38,9 @@ public class HibernateConfiguration {
     factory.setPackagesToScan("com.dragon.study.spring.boot.hibernate.module");
     factory.setDataSource(dataSource);
     Properties p = new Properties();
-    p.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+    p.setProperty("hibernate.physical_naming_strategy", "com.dragon.study.spring.boot.hibernate.PhysicalNamingStrategyImpl");
     p.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+    p.setProperty("hibernate.show_sql", "true");
     factory.setJpaProperties(p);
     factory.afterPropertiesSet();
 
