@@ -10,8 +10,13 @@
     <link href="../static/css/core.css"
           th:href="@{/css/core.css}"
           rel="stylesheet" media="screen" />
+    <link href="../static/js/config/keycloak.json"
+          th:href="@{/js/config/keycloak.json}"
+          rel="stylesheet" media="screen" />
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+    <script src="../static/js/keycloak.js"
+            th:src="@{/js/keycloak.js}"></script>
 </head>
 <body>
 <!-- Header -->
@@ -143,6 +148,22 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        var keycloak = Keycloak('/spring-boot-web/js/config/keycloak.json');
+
+        var reloadData = function () {
+            keycloak.updateToken(10)
+                    .success(loadData)
+                    .error(function() {
+                        document.getElementById('customers').innerHTML = '<b>Failed to load data.  User is logged out.</b>';
+                    });
+        }
+
+        keycloak.init({ onLoad: 'login-required' }).success(reloadData);
+
+    </script>
+
     <footer>
         <div th:replace="fragments/footer :: footer">&copy; 2016 blog.codeleak.pl</div>
     </footer>
