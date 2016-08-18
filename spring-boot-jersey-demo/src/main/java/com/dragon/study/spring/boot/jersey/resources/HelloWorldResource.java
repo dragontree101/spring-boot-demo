@@ -21,9 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Created by dragon on 16/7/21.
  */
-@Path("/spring-boot")
+@Path("/spring-boot/hello")
 @Slf4j
-@PermitAll
+//@PermitAll
 public class HelloWorldResource {
 
   private static final String WARN = "warn";
@@ -37,7 +37,7 @@ public class HelloWorldResource {
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  @RolesAllowed("user")
+//  @RolesAllowed("user")
   public String helloJersey(
       @QueryParam("name")
       String name) {

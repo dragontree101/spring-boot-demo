@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Created by dragon on 16/7/29.
  */
-@Path("/spring-boot")
+@Path("/spring-boot/person")
 @Slf4j
 public class PersonBasicInfoResource {
 

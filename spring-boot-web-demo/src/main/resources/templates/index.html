@@ -149,8 +149,37 @@
         </table>
     </div>
 
+    <div id="jersey"></div>
+
     <script>
         var keycloak = Keycloak('/spring-boot-web/js/config/keycloak.json');
+
+        var loadData = function () {
+            document.getElementById('subject').innerHTML = keycloak.subject;
+
+            var url = 'http://localhost:8088/jersey/spring-boot/hello/hello-jersey';
+
+            var req = new XMLHttpRequest();
+            req.open('GET', url, true);
+            req.setRequestHeader('Accept', 'application/json');
+            req.setRequestHeader('Authorization', 'Bearer ' + keycloak.token);
+
+            req.onreadystatechange = function () {
+                if (req.readyState == 4) {
+                    if (req.status == 200) {
+                        var response = req.responseText;
+                        document.getElementById('jersey').innerHTML = response;
+                        console.log('finished loading data');
+                    }
+                }
+            }
+
+            req.send();
+        };
+
+        var loadFailure = function () {
+            document.getElementById('jersey').innerHTML = '<b>Failed to load data.  Check console log</b>';
+        };
 
         var reloadData = function () {
             keycloak.updateToken(10)

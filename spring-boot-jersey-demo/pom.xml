@@ -57,15 +57,15 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.keycloak</groupId>-->
-            <!--<artifactId>keycloak-spring-boot-adapter</artifactId>-->
-            <!--<version>${keycloak-version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.keycloak</groupId>-->
-            <!--<artifactId>keycloak-tomcat8-adapter</artifactId>-->
-            <!--<version>${keycloak-version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-adapter</artifactId>
+            <version>${keycloak-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-tomcat8-adapter</artifactId>
+            <version>${keycloak-version}</version>
+        </dependency>
     </dependencies>
 </project>

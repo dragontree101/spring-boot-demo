@@ -61,7 +61,7 @@ public class PersonBasicInfoTest {
     headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
     HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(bodyMap, headers);
     ResponseEntity<CommonResponse> response = template
-        .exchange("/jersey/spring-boot/register", HttpMethod.POST, httpEntity,
+        .exchange("/jersey/spring-boot/person/register", HttpMethod.POST, httpEntity,
             CommonResponse.class);
 
     HttpStatus status = response.getStatusCode();
@@ -76,7 +76,7 @@ public class PersonBasicInfoTest {
   private void testQueryPerson(String phone, String email, String password, boolean hasSleep)
       throws Exception {
     ResponseEntity<PersonBasicInfo> responseEntity = template
-        .getForEntity("/jersey/spring-boot/queryPerson/" + phone,
+        .getForEntity("/jersey/spring-boot/person/queryPerson/" + phone,
             PersonBasicInfo.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
