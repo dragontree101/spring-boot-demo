@@ -29,3 +29,6 @@
 ## web模块
 这个模块主要是提供了简单的前端界面，主要是为了配合keycloak来进行oauth2的认证和测试。目前jersey模块的认证准备基于keycloak来进行
 启动之后在http://localhost:8087就可以访问到web页面了
+
+## dockerfile模块
+这个模块准备把依赖的基础服务mysql、redis、nginx、keycloak部署到docker里面，方便部署，顺便简单学习一下docker的使用
