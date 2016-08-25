@@ -1,0 +1,20 @@
+CREATE DATABASE spring_boot_demo;
+USE spring_boot_demo;
+
+CREATE TABLE spring_boot_demo.person_basic_info (
+  phone       VARCHAR(11) PRIMARY KEY,
+  email       VARCHAR(32) ,
+  password    VARCHAR(64) NOT NULL,
+  create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE spring_boot_demo.person_address_detail_info (
+  id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  phone       VARCHAR(11) NOT NULL,
+  address     VARCHAR(64) NOT NULL,
+  post_id     VARCHAR(6) NOT NULL DEFAULT '000000',
+  country     VARCHAR(16) NOT NULL,
+  create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

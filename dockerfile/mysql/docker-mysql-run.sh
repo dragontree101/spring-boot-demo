@@ -1,4 +1,4 @@
-docker build -t dragon/redis .
+docker build -t dragon/mysql .
 
 if [ $? -eq 0 ];then
     echo "docker build success"
@@ -7,4 +7,4 @@ else
     exit -1
 fi
 
-docker run -d -p 6379:8888 --name dragon-redis dragon/redis
+docker run -d -p 3306:3306 --name dragon-mysql dragon/mysql
