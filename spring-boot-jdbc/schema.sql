@@ -1,3 +1,6 @@
+CREATE DATABASE spring_boot_demo;
+USE spring_boot_demo;
+
 CREATE TABLE spring_boot_demo.person_basic_info (
   phone       VARCHAR(11) PRIMARY KEY,
   email       VARCHAR(32) ,
