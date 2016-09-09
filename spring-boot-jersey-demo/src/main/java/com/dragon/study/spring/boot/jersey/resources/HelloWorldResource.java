@@ -32,7 +32,7 @@ public class HelloWorldResource {
   IHelloJerseyService helloWorldService;
 
 
-  //TODO curl -u 'dragon:longlong0' 'http://127.0.0.1:8088/jersey/spring-boot/hello-jersey?name=longzhe'
+  //TODO curl -u 'dragon:longlong0' 'http://127.0.0.1:8088/jersey/spring-boot/hello/hello-jersey?name=longzhe'
   @Path("/hello-jersey")
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -51,6 +51,7 @@ public class HelloWorldResource {
     return "Hello World";
   }
 
+  //TODO curl 'http://127.0.0.1:8088/jersey/spring-boot/hello/hello-jersey/user'
   @Path("/hello-jersey/{path}")
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

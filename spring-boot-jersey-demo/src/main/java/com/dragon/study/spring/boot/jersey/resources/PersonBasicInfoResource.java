@@ -49,6 +49,7 @@ public class PersonBasicInfoResource {
     return CommonResponse.of(true);
   }
 
+  //TODO curl 'http://127.0.0.1:8088/jersey/spring-boot/person/queryPerson/18507313226'
   @Path("/queryPerson/{phone}")
   @GET
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
