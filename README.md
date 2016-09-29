@@ -1,6 +1,6 @@
 # 项目简介：
 -----------------
-##这个项目主要的目的是为了能够帮助新人快速使用springboot来构建项目, 目前项目中使用的springboot的版本是1.4.0.RELEASE
+##这个项目主要的目的是为了能够帮助新人快速使用springboot来构建项目, 目前项目中使用的springboot的版本是1.4.1.RELEASE
 
 # 项目目前由几个模块组成：
 
@@ -21,7 +21,7 @@
 这个模块主要是简单介绍如何通过springboot来完成非mvc的代码逻辑，比如处理一些脚本任务、统计任务和定时任务
 
 ## jersey模块
-这个模块主要是基于jersey框架来来完成后端业务逻辑接口类， 里面基于jpa+hibernate来作为数据库访问的框架，然后打算使用keycloak来做一些简单的权限控制功能(因为jersey和security模块貌似不能很好的集成)
+这个模块主要是基于jersey框架来来完成后端业务逻辑接口类， 里面基于jpa+hibernate来作为数据库访问的框架，然后打算使用keycloak来做一些简单的权限控制功能(因为jersey和security模块貌似不能很好的集成)，但是由于spring-boot从1.4.0.RELEASE版本以后，打包的插件打出来的jar包目录形式发生了改变，导致jersey不兼容，从而直接通过java -jar的方式启动会失败
 
 ## hibernate模块
 这个模块主要是提供了jpa + hibernate的操作数据库，由于springboot升级到了1.4.0.RELEASE，所以默认的hibernate也使用了hibernate 5（可能会导致一些与hibernate 4不兼容的地方），目前这个模块是提供给jersey模块使用
