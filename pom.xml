@@ -9,6 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <!--编译的时候对于所有的单元测试进行跳过 相当于mvn命令后面加入了 -Dmaven.test.skip=true -->
     <properties>
         <skipTests>true</skipTests>
     </properties>
@@ -26,12 +27,14 @@
         <module>spring-boot-zuul-demo</module>
     </modules>
 
+    <!--统一管理项目集中使用jar包的版本-->
     <dependencyManagement>
         <dependencies>
+            <!--spring-boot相关的组建版本项目统一使用spring-boot-dependencies来进行管理-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.4.0.RELEASE</version>
+                <version>1.4.1.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -84,10 +87,11 @@
     <build>
         <pluginManagement>
             <plugins>
+                <!--使用spring-boot-maven-plugin来进行build可执行的jar包-->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>1.4.0.RELEASE</version>
+                    <version>1.4.1.RELEASE</version>
                     <executions>
                         <execution>
                             <goals>
@@ -96,6 +100,7 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!--项目集统一使用jdk1.8-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -106,6 +111,7 @@
                     </configuration>
                     <version>3.1</version>
                 </plugin>
+                <!--打好的jar包里面包含源代码-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
