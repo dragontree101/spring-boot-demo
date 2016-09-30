@@ -3,8 +3,6 @@ package com.dragon.study.spring.boot.zuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
-import java.io.IOException;
-
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

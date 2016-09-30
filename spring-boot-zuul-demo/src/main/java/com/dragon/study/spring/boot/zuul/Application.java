@@ -1,14 +1,8 @@
 package com.dragon.study.spring.boot.zuul;
 
-import com.netflix.zuul.context.ContextLifecycleFilter;
-import com.netflix.zuul.http.ZuulServlet;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Created by dragon on 16/9/9.

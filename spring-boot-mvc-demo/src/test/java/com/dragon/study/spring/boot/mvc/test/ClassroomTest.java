@@ -1,6 +1,8 @@
 package com.dragon.study.spring.boot.mvc.test;
 
+import com.alibaba.fastjson.JSON;
 import com.dragon.study.spring.boot.mvc.Application;
+import com.dragon.study.spring.boot.mvc.exception.common.MvcExceptionModel;
 import com.dragon.study.spring.boot.mvc.model.ClassroomModel;
 import com.dragon.study.spring.boot.mvc.model.PersonModel;
 
@@ -13,7 +15,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ClassroomTest {
   @Test
   public void testTeacherName() throws Exception {
     ResponseEntity responseEntity = template
-        .getForEntity("/mvc/spring-boot/classroom/teacherName?grade=1&classroom=10",
+        .getForEntity("/spring-boot/classroom/teacherName?grade=1&classroom=10",
             String.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
@@ -42,9 +43,24 @@ public class ClassroomTest {
   }
 
   @Test
+  public void testErrorGrade() throws Exception {
+    ResponseEntity responseEntity = template
+        .getForEntity("/spring-boot/classroom/teacherName?grade=1&classroom=10000",
+            String.class);
+    HttpStatus status = responseEntity.getStatusCode();
+    Assert.assertTrue(status.is4xxClientError());
+    String body = (String)responseEntity.getBody();
+    MvcExceptionModel model = JSON.parseObject(body, MvcExceptionModel.class);
+    Assert.assertEquals(model.getHttpCode(), 400);
+    Assert.assertEquals(model.getErrorCode(), 4000001);
+    Assert.assertEquals(model.getErrorMsg(), "Parameter error!");
+    Assert.assertEquals(model.getDetailMsg(), "班级最大只能99");
+  }
+
+  @Test
   public void testClassroom() throws Exception {
     ResponseEntity<ClassroomModel> responseEntity = template
-        .getForEntity("/mvc/spring-boot/classroom/classroom/1/10", ClassroomModel.class);
+        .getForEntity("/spring-boot/classroom/classroom/1/10", ClassroomModel.class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
 
@@ -57,7 +73,7 @@ public class ClassroomTest {
   @Test
   public void testTopTen() throws Exception {
     ResponseEntity<PersonModel[]> responseEntity = template
-        .getForEntity("/mvc/spring-boot/classroom/topTen?grade=1&classroom=10",
+        .getForEntity("/spring-boot/classroom/topTen?grade=1&classroom=10",
             PersonModel[].class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());
@@ -69,7 +85,7 @@ public class ClassroomTest {
   @Test
   public void testBiggerThan60() throws Exception {
     ResponseEntity<PersonModel[]> responseEntity = template
-        .getForEntity("/mvc/spring-boot/classroom/biggerThan60?grade=1&classroom=10",
+        .getForEntity("/spring-boot/classroom/biggerThan60?grade=1&classroom=10",
             PersonModel[].class);
     HttpStatus status = responseEntity.getStatusCode();
     Assert.assertTrue(status.is2xxSuccessful());

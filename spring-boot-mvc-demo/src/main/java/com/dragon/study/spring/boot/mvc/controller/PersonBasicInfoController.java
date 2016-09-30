@@ -7,6 +7,7 @@ import com.dragon.study.spring.boot.mvc.exception.PersonBasicInfoException;
 import com.dragon.study.spring.boot.mvc.model.CommonResponse;
 import com.dragon.study.spring.boot.mvc.service.IPersonBasicInfoService;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,6 +37,7 @@ public class PersonBasicInfoController {
       @ModelAttribute
       PersonBasicInfo personBasicInfo,
       @RequestParam(value = "country", required = false)
+      @Length(min = 1, max = 10, message = "国家只能1-10个字符")
       String country) {
     if (Strings.isNullOrEmpty(personBasicInfo.getPhone()) || Strings
         .isNullOrEmpty(personBasicInfo.getPassword())) {

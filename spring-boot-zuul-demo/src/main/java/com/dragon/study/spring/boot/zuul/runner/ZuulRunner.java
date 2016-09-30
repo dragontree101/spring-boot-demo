@@ -2,17 +2,9 @@ package com.dragon.study.spring.boot.zuul.runner;
 
 import com.dragon.study.spring.boot.zuul.filter.DemoPostFilter;
 import com.dragon.study.spring.boot.zuul.filter.DemoPreFilter;
-import com.dragon.study.spring.boot.zuul.filter.DemoRouteFilter;
 import com.netflix.zuul.filters.FilterRegistry;
 import com.netflix.zuul.monitoring.MonitoringHelper;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
-import org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper;
-import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommandContext;
-import org.springframework.cloud.netflix.zuul.filters.route.RibbonRoutingFilter;
-import org.springframework.cloud.netflix.zuul.filters.route.SimpleHostRoutingFilter;
-import org.springframework.cloud.netflix.zuul.filters.route.apache.HttpClientRibbonCommandFactory;
 import org.springframework.stereotype.Component;
 
 /**

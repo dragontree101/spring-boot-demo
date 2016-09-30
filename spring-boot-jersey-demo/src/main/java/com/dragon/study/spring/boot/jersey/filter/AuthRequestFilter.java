@@ -1,8 +1,8 @@
 package com.dragon.study.spring.boot.jersey.filter;
 
-import javax.annotation.Priority;
 import java.io.IOException;
 
+import javax.annotation.Priority;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 

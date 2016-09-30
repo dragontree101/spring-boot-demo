@@ -4,8 +4,6 @@ import com.dragon.study.spring.boot.jersey.service.IHelloJerseyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;

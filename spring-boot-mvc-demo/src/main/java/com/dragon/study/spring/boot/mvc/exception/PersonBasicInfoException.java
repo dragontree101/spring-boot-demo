@@ -11,7 +11,8 @@ public class PersonBasicInfoException extends MvcException {
 
   public enum BasicInfoExceptionFactor implements MvcExceptionFactor {
     NO_PHONE_FAILURE(10001, "没有输入电话号码"),
-    NO_PERSON_FAILURE(20001, "查找的用户不存在"),;
+    NO_PERSON_FAILURE(20001, "查找的用户不存在"),
+    ;
 
     private int index;
     private String reason;
