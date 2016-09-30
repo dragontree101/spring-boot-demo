@@ -16,10 +16,8 @@ public class Application {
 
   @PostConstruct
   public void logSomething() {
-    for(int i = 0; i<100; i++) {
-      log.debug("Sample Debug Message");
-      log.info("Sample Info Message");
-    }
+    log.debug("Sample Debug Message");
+    log.info("Sample Info Message");
   }
 
   public static void main(String[] args) throws Exception {
