@@ -1,0 +1,10 @@
+spring:
+  profiles: test
+  application:
+    name: spring-boot-no-mvc-demo
+
+
+logging:
+  file: ./logs/spring-boot-no-mvc-demo.log
+  level:
+    com.dragon.study.spring.boot: DEBUG

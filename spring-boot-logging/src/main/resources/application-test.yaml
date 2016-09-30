@@ -1,0 +1,10 @@
+spring:
+  profiles: test
+  application:
+    name: spring-boot-logging
+
+
+logging:
+  file: ./logs/spring-boot-logging.log
+  level:
+    com.dragon.study.spring.boot: DEBUG

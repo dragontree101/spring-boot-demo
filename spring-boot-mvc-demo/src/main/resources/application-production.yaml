@@ -13,5 +13,7 @@ mysql:
 
 
 logging:
+  file: spring-boot-mvc-demo.log
+  path: ../logs/
   level:
     com.dragon.study.spring.boot: INFO
