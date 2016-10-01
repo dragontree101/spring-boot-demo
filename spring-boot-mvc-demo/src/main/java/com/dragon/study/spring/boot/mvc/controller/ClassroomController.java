@@ -3,7 +3,7 @@ package com.dragon.study.spring.boot.mvc.controller;
 import com.dragon.study.spring.boot.mvc.annotation.ParamValidator;
 import com.dragon.study.spring.boot.mvc.model.ClassroomModel;
 import com.dragon.study.spring.boot.mvc.model.PersonModel;
-import com.dragon.study.spring.boot.mvc.model.TestModel;
+import com.dragon.study.spring.boot.mvc.model.GradeAndClassroomModel;
 import com.dragon.study.spring.boot.mvc.service.IClassroomService;
 
 import org.hibernate.validator.constraints.Range;
@@ -80,8 +80,9 @@ public class ClassroomController {
   public String paramErrorTest(
       @Valid
       @ModelAttribute
-      TestModel testModel, BindingResult result) {
-    return classroomService.getTeacherName(testModel.getGrade(), testModel.getClassroomNumber());
+      GradeAndClassroomModel gradeAndClassroomModel, BindingResult result) {
+    return classroomService.getTeacherName(
+        gradeAndClassroomModel.getGrade(), gradeAndClassroomModel.getClassroomNumber());
   }
 
   @RequestMapping(value = "/paramValidator", method = RequestMethod.GET)
