@@ -1,6 +1,6 @@
 package com.dragon.study.spring.boot.configuration.auto.config;
 
-import com.dragon.study.spring.boot.configuration.bean.AutoSecondBean;
+import com.dragon.study.spring.boot.configuration.bean.AutoThirdBean;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -15,17 +15,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Configuration
-public class AutoSecondBeanConfiguration {
+public class AutoThirdBeanConfiguration {
 
   @PostConstruct
   public void init() {
-    log.info("log init auto second bean");
+    log.info("log init auto third bean");
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public AutoSecondBean autoSecondBean() {
-    log.info("log auto second bean");
-    return new AutoSecondBean("autoSecondBean", 2);
+  public AutoThirdBean autoThirdBean() {
+    log.info("log auto third bean");
+    return new AutoThirdBean("autoThirdBean", 2);
   }
 }
