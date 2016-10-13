@@ -1,0 +1,19 @@
+spring:
+  profiles: production
+  application:
+    name: spring-boot-mybatis-demo
+
+server:
+  port: 8080
+  context-path: /mybatis
+
+mysql:
+  userName: root
+  url: jdbc:mysql://127.0.0.1:3306/spring_boot_demo?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+
+
+logging:
+  file: spring-boot-mvc-demo.log
+  path: ../logs/
+  level:
+    com.dragon.study.spring.boot: INFO
