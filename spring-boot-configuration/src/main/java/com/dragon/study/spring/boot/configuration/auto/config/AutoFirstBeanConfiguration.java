@@ -3,6 +3,7 @@ package com.dragon.study.spring.boot.configuration.auto.config;
 import com.dragon.study.spring.boot.configuration.bean.AutoFirstBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

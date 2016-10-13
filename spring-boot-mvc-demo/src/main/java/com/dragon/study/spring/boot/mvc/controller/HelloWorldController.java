@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/spring-boot")
 @Slf4j
-@PreAuthorize("hasAuthority('user')")
+//@PreAuthorize("hasAuthority('user')")
 public class HelloWorldController {
 
   private static final String WARN = "warn";
@@ -24,7 +24,7 @@ public class HelloWorldController {
   IHelloWorldService helloWorldService;
 
   @RequestMapping("/hello-world")
-  @PreAuthorize("hasAuthority('admin')")
+//  @PreAuthorize("hasAuthority('admin')")
   public String helloWorld() {
     String info = "info";
     log.debug("hello world controller, log level is {}", "debug");
