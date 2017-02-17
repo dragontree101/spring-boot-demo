@@ -17,7 +17,5 @@ import java.lang.annotation.Target;
 public @interface EnableJersey {
   String scanPackage();
 
-  String applicationPath();
-
   Class[] componentClasses();
 }

@@ -22,8 +22,7 @@ public class ServletBean {
   @Bean
   @ConditionalOnMissingBean(name = "jerseyServletRegistration")
   public ServletRegistrationBean jerseyServletRegistration() {
-    ServletRegistrationBean registration = new ServletRegistrationBean(new ServletContainer(),
-        JerseyConfig.getConfigurationParam().getPath());
+    ServletRegistrationBean registration = new ServletRegistrationBean(new ServletContainer());
     registration
         .addInitParameter(ServletProperties.JAXRS_APPLICATION_CLASS, config.getClass().getName());
     registration.setName("jerseyServlet");

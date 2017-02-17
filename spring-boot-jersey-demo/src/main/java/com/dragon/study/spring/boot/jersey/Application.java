@@ -20,7 +20,6 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 @EnableJersey(
     scanPackage = "com.dragon.study.spring.boot.jersey.resources",
-    applicationPath = "/jersey/*",
     componentClasses = {
         RequestContextFilter.class,
         //把驼峰格式字段字符转换成下划线

@@ -9,7 +9,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class JerseyConfigurationParam {
-  private final String path;
   private final String scanPackage;
   private final Class[] componentClasses;
 

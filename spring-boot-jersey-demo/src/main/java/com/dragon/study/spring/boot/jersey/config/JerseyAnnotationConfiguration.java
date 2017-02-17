@@ -37,8 +37,7 @@ public class JerseyAnnotationConfiguration implements ApplicationContextAware {
       Class entrance = applicationContext.getBean(beanNames[0]).getClass();
       EnableJersey enableJersey = AnnotationUtils.getAnnotation(entrance, EnableJersey.class);
       if (enableJersey != null) {
-        JerseyConfigurationParam param = new JerseyConfigurationParam(
-            enableJersey.applicationPath(), enableJersey.scanPackage(),
+        JerseyConfigurationParam param = new JerseyConfigurationParam(enableJersey.scanPackage(),
             enableJersey.componentClasses());
         JerseyConfig.setConfigurationParam(param);
         return new JerseyConfig();
