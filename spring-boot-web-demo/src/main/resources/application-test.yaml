@@ -2,13 +2,6 @@ spring:
   profiles: test
   application:
     name: spring-boot-web-demo
-  thymeleaf:
-      cache: false
-      check-template-location: true
-      content: text/html
-      encoding: UTF-8
-      mode: HTML5
 
 server:
   port: 8087
-  context-path: /spring-boot-web
